@@ -1,8 +1,10 @@
 import React from "react";
 import {
+    ChatBubbleLeftIcon,
     DocumentTextIcon,
     StarIcon,
-    ArrowLongLeftIcon   
+    ArrowLongLeftIcon,
+    ArrowLeftOnRectangleIcon
 } from "@heroicons/react/24/outline";
 
 import { useMemo } from "react";
@@ -18,13 +20,13 @@ const useRoutes = () => {
         {
             label: 'Chat A',
             href: '/users/chat/a',
-            icon: <DocumentTextIcon className="w-6 h-6" />,
+            icon: <ChatBubbleLeftIcon className="w-6 h-6" />,
             active: pathname == '/users/chat/a'
         },
         {
             label: 'Chat B',
             href: '/users/chat/b',
-            icon: <DocumentTextIcon className="w-6 h-6" />,
+            icon: <ChatBubbleLeftIcon className="w-6 h-6" />,
             active: pathname == '/users/chat/b'
         },
         {
@@ -36,7 +38,7 @@ const useRoutes = () => {
         {
             label: "Logout",
             href: "#",
-            icon: <ArrowLongLeftIcon className="w-6 h-6" />,
+            icon: <ArrowLeftOnRectangleIcon className="w-6 h-6" />,
             onClick: () => signOut(),
           },
     ],[pathname]);
