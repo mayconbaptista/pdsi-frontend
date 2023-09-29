@@ -2,7 +2,7 @@ import classNames from "classnames";
 import SidebarItem from "./SidebarItem";
 import useRoutes from "./sidebarItens";
 
-const Sidebar = ({isOpen,reference}) => {
+const Sidebar = ({isOpen,reference,closeSidebar}) => {
     
     const routes = useRoutes();
 
@@ -29,6 +29,7 @@ const Sidebar = ({isOpen,reference}) => {
                         key={index}
                         index={index}
                         item={item}
+                        onClick={closeSidebar}
                     />
                 );})}
             </ul>

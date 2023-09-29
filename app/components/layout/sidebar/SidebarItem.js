@@ -1,10 +1,10 @@
 import Link from "next/link";
 import classNames from "classnames";
 
-const SidebarItem = ({index,item}) => {
+const SidebarItem = ({index,item,onClick}) => {
 
     return(
-        <Link key={index} href={item.href} onClick={item.onClick}>
+        <Link key={index} href={item.href} onClick={() => {item.onClick;onClick()}}>
             <li
                 className={classNames({
                     "text-indigo-100 hover:bg-indigo-900": true, //colors

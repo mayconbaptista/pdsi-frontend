@@ -8,6 +8,7 @@ export default function ChatsLayout({params,children}) {
             className="h-screen flex flex-col w-full"
         >
             <div className={classNames({
+                "text-center": true,
                 "bg-white text-zinc-500": true, // colors
                 "h-14": true,
                 "t-0":true,

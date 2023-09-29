@@ -21,13 +21,13 @@ export default function UsersLayout({children}) {
 
     return(       
         <div className="grid grid-cols-2 md:grid-cols-3 bg-zinc-100">
-            <Sidebar isOpen={showSidebar} reference={refSidebar}/>
+            <Sidebar isOpen={showSidebar} reference={refSidebar} closeSidebar={() => setShowSidebar(false)}/>
             <div className="col-span-2">
-                    <HamburguerIcon 
-                        onClick={() => setShowSidebar(!showSidebar)}
-                        isOpen={showSidebar}
-                        className={"fixed h-8 w-8 right-0 z-50 md:hidden"}
-                    />
+                {!showSidebar && (
+                    <button className={"fixed h-8 w-8 left-0 z-50 md:hidden"} onClick={() => setShowSidebar(true)}>
+                        <Bars3Icon/>
+                    </button>
+                )}
                 {/* <Navbar onMenuButtonClick={() => setShowSidebar(!showSidebar)}/> */}
                 {children}
             </div>

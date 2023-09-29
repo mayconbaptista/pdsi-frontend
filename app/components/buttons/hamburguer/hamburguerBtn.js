@@ -18,11 +18,11 @@ export const HamburguerIcon = ({
     },[isOpen]);
 
     return(
-            <button className={className ? className : "h-full w-full"} onClick={() => {
-                onClick()
-            }}>
-            <span className="hamburguerBtn-container" ref={refBtn}>
-                {/* montar menu hamburguer */}
+        <button className={className ? className : "h-full w-full"} onClick={onClick}>
+            <span className="h-full w-full">
+                <span className="hamburguerBtn-container" ref={refBtn}>
+                    {/* montar menu hamburguer */}
+                </span>
             </span>
         </button>
     )

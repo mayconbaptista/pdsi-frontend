@@ -1,6 +1,6 @@
 const Favorites = () => {
     return (
-        <div>
+        <div className="text-center">
             Seus Favoritos
         </div>
     );
