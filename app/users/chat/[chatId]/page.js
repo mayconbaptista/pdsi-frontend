@@ -1,32 +1,40 @@
+'use client';
+
 import { UserMessage,BotMessage } from "@/app/components/messages/chatMessage"
+import { MessageInput } from "@/app/components/inputs/messageInput"
+import { useEffect, useRef, useState } from "react";
 
 export default function Chat({ params }) {
+
+  const scrollDiv = useRef();
+
+  // Gambiarra 2000
+  const [messages,SetMessages] = useState(
+    [
+      UserMessage(`Mensagem #3 ${params.chatId}  Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid hic molestias dolore eum? Laboriosam adipisci fugit maxime harum dolorum eaque eveniet odit molestias repudiandae a. Maiores, aperiam praesentium! Laborum?`,2),
+      BotMessage(`Mensagem #4 ${params.chatId} Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid hic molestias dolore eum? Laboriosam adipisci fugit maxime harum dolorum eaque eveniet odit molestias repudiandae a. Maiores, aperiam praesentium! Laborum?`,1),
+    ]
+  );
+
+  let lId = messages.length;
+
+  useEffect( () => {
+    scrollDiv.current.scrollIntoView({ behavior: 'smooth' });
+  },[messages]);
+
+  const updateMessages = (newMsg) => {
+    lId++
+    SetMessages([...messages,UserMessage(newMsg,lId),BotMessage(`Minha Resposta: ${newMsg}`,lId+1)]);
+    lId++
+  }
+
     return (
-      <div>
-        {UserMessage(`Mensagem #1 ${params.chatId}`)}
-        {BotMessage(`Mensagem #2 ${params.chatId}`)}
-        {UserMessage(`Mensagem #3 ${params.chatId}  Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid hic molestias dolore eum? Laboriosam adipisci fugit maxime harum dolorum eaque eveniet odit molestias repudiandae a. Maiores, aperiam praesentium! Laborum?`)}
-        {BotMessage(`Mensagem #4 ${params.chatId} 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid hic molestias dolore eum? Laboriosam adipisci fugit maxime harum dolorum eaque eveniet odit molestias repudiandae a. Maiores, aperiam praesentium! Laborum?`)}
-        {UserMessage(`Mensagem #5 ${params.chatId}`)}
-        {BotMessage(`Mensagem #6 ${params.chatId}`)}
-        {UserMessage(`Mensagem #7 ${params.chatId}`)}
-        {BotMessage(`Mensagem #8 ${params.chatId}`)}
-        {UserMessage(`Mensagem #9 ${params.chatId}`)}
-        {BotMessage(`Mensagem #10 ${params.chatId}`)}
-        {UserMessage(`Mensagem #11 ${params.chatId}`)}
-        {BotMessage(`Mensagem #12 ${params.chatId}`)}
-        {UserMessage(`Mensagem #13 ${params.chatId}`)}
-        {BotMessage(`Mensagem #14 ${params.chatId}`)}
-        {UserMessage(`Mensagem #15 ${params.chatId}`)}
-        {BotMessage(`Mensagem #16 ${params.chatId}`)}
-        {UserMessage(`Mensagem #17 ${params.chatId}`)}
-        {BotMessage(`Mensagem #18 ${params.chatId}`)}
-        {UserMessage(`Mensagem #19 ${params.chatId}`)}
-        {BotMessage(`Mensagem #20 ${params.chatId}`)}
-        {UserMessage(`Mensagem #21 ${params.chatId}`)}
-        {BotMessage(`Mensagem #22 ${params.chatId}`)}
-        {UserMessage(`Mensagem #23 ${params.chatId}`)}
+      <div className="flex flex-col w-full">
+        <div className="min-h-chat">
+          {messages.map( message => (message))}
+        </div>
+        <MessageInput onSend={updateMessages}/>
+        <div ref={scrollDiv}/>
       </div>
     );
   }

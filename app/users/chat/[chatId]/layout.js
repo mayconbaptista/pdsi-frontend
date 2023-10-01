@@ -17,10 +17,9 @@ export default function ChatsLayout({params,children}) {
              })}>
                 <h1>Layout Chat {params.chatId}</h1>
             </div>
-            <div className="h-full overflow-y-scroll">
+            <div className="h-full overflow-y-scroll relative">
                 {children}
             </div>
-            <MessageInput/>
         </div>
     );
 };

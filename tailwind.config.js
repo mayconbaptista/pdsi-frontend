@@ -21,6 +21,9 @@ module.exports = {
       },
       maxWidth:{
         '80p': '80%'
+      },
+      minHeight:{
+        'chat': 'calc(100vh - 3.5rem)'
       }
     },
   },

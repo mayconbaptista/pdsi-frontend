@@ -48,7 +48,7 @@ export const AuthForm = () => {
         if(session.status == 'authenticated'){
             router.push('/users');
         }
-    },[session.status]);
+    },[router,session.status]);
 
     const handleSubmit = async e => {
       e.preventDefault();

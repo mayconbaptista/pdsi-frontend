@@ -1,7 +1,7 @@
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-export const MessageInput = () => {
+export const MessageInput = ({onSend}) => {
 
     const [userMessage,setUserMessage] = useState();
 
@@ -10,10 +10,10 @@ export const MessageInput = () => {
         e.preventDefault();
         
         try {
-            console.log(`Message: ${userMessage}`)
             console.log("Mensagem enviada");
 
             setUserMessage("");
+            onSend(userMessage);
 
         } catch (err) {
             console.error(`Error in sendMessage: ${err}`);
@@ -28,8 +28,8 @@ export const MessageInput = () => {
             text-gray-800 
             bottom-0 
             sticky 
-            h-14 
-            z-20
+            h-14 w-full
+            z-10
         `}>
             <form
                 method="POST"
