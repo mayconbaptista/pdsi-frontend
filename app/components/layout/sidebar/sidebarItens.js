@@ -1,9 +1,7 @@
 import React from "react";
 import {
     ChatBubbleLeftIcon,
-    DocumentTextIcon,
     StarIcon,
-    ArrowLongLeftIcon,
     ArrowLeftOnRectangleIcon
 } from "@heroicons/react/24/outline";
 
@@ -40,7 +38,7 @@ const useRoutes = () => {
             href: "#",
             icon: <ArrowLeftOnRectangleIcon className="w-6 h-6" />,
             onClick: () => signOut(),
-          },
+        },
     ],[pathname]);
 
     return routes;

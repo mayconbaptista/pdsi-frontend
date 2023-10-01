@@ -13,6 +13,15 @@ module.exports = {
       gridTemplateRows: {
         header: "64px auto", // 👈 for the navbar layout. adds grid-rows-header class
       },
+      borderRadius: {
+        borderMSg: '25px',
+      },
+      width:{
+        fit: 'fit-content'
+      },
+      maxWidth:{
+        '80p': '80%'
+      }
     },
   },
   plugins: [],

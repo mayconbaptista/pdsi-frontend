@@ -1,7 +1,9 @@
 const Users = () => {
     return (
-        <div>
-            Bem vindo Usuario
+        <div className="text-center h-screen">
+            <span className="align-middle h-full">
+                Bem vindo Usuario, selecione um chat
+            </span>
         </div>
     );
 }

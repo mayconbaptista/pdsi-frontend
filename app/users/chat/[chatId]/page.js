@@ -1,29 +1,32 @@
+import { UserMessage,BotMessage } from "@/app/components/messages/chatMessage"
+
 export default function Chat({ params }) {
     return (
       <div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #1</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #2</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #3</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #4</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #5</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #6</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #7</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #8</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #9</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #10</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #11</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #12</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #13</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #14</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #15</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #16</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #17</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #18</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #19</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #20</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #21</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #22</div>
-        <div class="h-28 p-55 border-red-800"> Mensagem #23</div>
+        {UserMessage(`Mensagem #1 ${params.chatId}`)}
+        {BotMessage(`Mensagem #2 ${params.chatId}`)}
+        {UserMessage(`Mensagem #3 ${params.chatId}  Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid hic molestias dolore eum? Laboriosam adipisci fugit maxime harum dolorum eaque eveniet odit molestias repudiandae a. Maiores, aperiam praesentium! Laborum?`)}
+        {BotMessage(`Mensagem #4 ${params.chatId} 
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid hic molestias dolore eum? Laboriosam adipisci fugit maxime harum dolorum eaque eveniet odit molestias repudiandae a. Maiores, aperiam praesentium! Laborum?`)}
+        {UserMessage(`Mensagem #5 ${params.chatId}`)}
+        {BotMessage(`Mensagem #6 ${params.chatId}`)}
+        {UserMessage(`Mensagem #7 ${params.chatId}`)}
+        {BotMessage(`Mensagem #8 ${params.chatId}`)}
+        {UserMessage(`Mensagem #9 ${params.chatId}`)}
+        {BotMessage(`Mensagem #10 ${params.chatId}`)}
+        {UserMessage(`Mensagem #11 ${params.chatId}`)}
+        {BotMessage(`Mensagem #12 ${params.chatId}`)}
+        {UserMessage(`Mensagem #13 ${params.chatId}`)}
+        {BotMessage(`Mensagem #14 ${params.chatId}`)}
+        {UserMessage(`Mensagem #15 ${params.chatId}`)}
+        {BotMessage(`Mensagem #16 ${params.chatId}`)}
+        {UserMessage(`Mensagem #17 ${params.chatId}`)}
+        {BotMessage(`Mensagem #18 ${params.chatId}`)}
+        {UserMessage(`Mensagem #19 ${params.chatId}`)}
+        {BotMessage(`Mensagem #20 ${params.chatId}`)}
+        {UserMessage(`Mensagem #21 ${params.chatId}`)}
+        {BotMessage(`Mensagem #22 ${params.chatId}`)}
+        {UserMessage(`Mensagem #23 ${params.chatId}`)}
       </div>
-    )
+    );
   }
