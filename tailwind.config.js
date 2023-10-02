@@ -23,7 +23,7 @@ module.exports = {
         '80p': '80%'
       },
       minHeight:{
-        'chat': 'calc(100vh - 3.5rem)'
+        'chat': 'calc(100vh - 7rem)'
       }
     },
   },
