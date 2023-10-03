@@ -35,7 +35,7 @@ async function loginUser(credentials) {
 
 }
 
-export const AuthForm = () => {
+export const AuthForm = ({tooglePage}) => {
 
     const session = useSession();
 
@@ -70,7 +70,6 @@ export const AuthForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div style={{ width: 1440, height: 1024, position: 'relative', background: 'linear-gradient(0deg, #F5F5F5 0%, #F5F5F5 100%)', backgroundImage: 'url(/image/Rectangle3.png)' }}>
                 <div style={{ width: 1313, height: 892, left: 62, top: 66, position: 'absolute', background: 'white', borderRadius: 15, border: '1px #CCCCCC solid' }} />
                 <div style={{ width: 650, height: 892, left: 62, top: 66, position: 'absolute' }}>
                     <div style={{ width: 650, height: 892, left: 0, top: 0, position: 'absolute', background: '#FF6347', borderTopLeftRadius: 15, borderTopRightRadius: 15 }} />
@@ -98,7 +97,10 @@ export const AuthForm = () => {
                     </div>
                     <div style={{ width: 258, height: 63, left: 127, top: 717, position: 'absolute' }}>
                         <div style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', background: '#FF6347', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 8, border: '1px rgba(198.89, 112.87, 112.87, 0.13) solid' }} />
-                        <div style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#F5F5F5', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Cadastre-se</div>
+                        <button type='button' onClick={() => tooglePage()}
+                            style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#F5F5F5', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>
+                                Cadastre-se
+                        </button>
                     </div>
                     <div style={{ width: 258, left: 127, top: 529, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 20, fontFamily: 'Roboto', fontWeight: '400', textDecoration: 'underline', wordWrap: 'break-word' }}>Esqueceu sua senha?</div>
                     <div style={{ width: 282, left: 115, top: 681, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 20, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Não possui uma conta ainda?</div>
@@ -106,7 +108,6 @@ export const AuthForm = () => {
                 </div>
                 <img style={{ width: 48, height: 82, left: 1273, top: 66, position: 'absolute' }} src="/image/Vector.png" />
                 <div style={{ width: 584, height: 376, left: 95, top: 322, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 45, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Precisou de ajuda na cozinha? Deixa com o Chef!</div>
-            </div>
         </form>
     )
 }
