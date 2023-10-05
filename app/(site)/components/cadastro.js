@@ -30,49 +30,50 @@ export default function Cadastro() {
             </div>
             <div style={{ width: 536, height: 763, left: 119, top: 133, position: 'absolute' }}>
                 <div style={{ width: 536, height: 44, left: 0, top: 0, position: 'absolute', color: 'black', fontSize: 35, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Cadastro:</div>
+                {/* usuário */}
                 <div style={{ width: 536, height: 93, left: 0, top: 59, position: 'absolute' }}>
-                    <div style={{ width: 536, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} />
-                    <div style={{ width: 525, height: 52, left: 11, top: 41, position: 'absolute', color: '#CCCCCC', fontSize: 25, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Informe nome de usuario</div>
+                    <input style={{ width: 536, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} type="text" />
                     <div style={{ left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Usuario</div>
                 </div>
+                {/* senha */}
                 <div style={{ width: 266, height: 93, left: 0, top: 173, position: 'absolute' }}>
-                    <div style={{ width: 266, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} />
-                    <div style={{ width: 260.54, height: 52, left: 5.46, top: 41, position: 'absolute', color: '#CCCCCC', fontSize: 25, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>****</div>
+                    <input style={{ width: 266, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} type="password" />
                     <div style={{ width: 266, left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Senha</div>
                 </div>
+                {/* confirmar senha */}
                 <div style={{ width: 266, height: 93, left: 270, top: 173, position: 'absolute' }}>
-                    <div style={{ width: 266, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} />
-                    <div style={{ width: 260.54, height: 52, left: 5.46, top: 41, position: 'absolute', color: '#CCCCCC', fontSize: 25, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>****</div>
+                    <input style={{ width: 266, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} type="password" />
                     <div style={{ width: 266, left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Confirmar senha</div>
                 </div>
+                {/* email */}
                 <div style={{ width: 536, height: 93, left: 0, top: 288, position: 'absolute' }}>
-                    <div style={{ width: 536, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} />
-                    <div style={{ width: 525, height: 52, left: 11, top: 41, position: 'absolute', color: '#CCCCCC', fontSize: 25, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Informe nome de usuario</div>
+                    <input style={{ width: 536, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} type="email" />
                     <div style={{ left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Email</div>
                 </div>
+                {/* checkbox */}
                 <div style={{ width: 531, height: 90, left: 3, top: 403, position: 'absolute' }}>
+                    <div style={{ width: 531, height: 37.71, left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Plano:</div>
                     <div style={{ width: 216, height: 38.57, left: 0, top: 51.43, position: 'absolute' }}>
-                        <div style={{ width: 45, height: 38.57, left: 0, top: 0, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 7, border: '1px #CCCCCC solid' }} />
-                        <div style={{ width: 45, height: 38.57, left: 0, top: 0, position: 'absolute' }}>
-                            <div style={{ width: 45, height: 38.57, left: 0, top: 0, position: 'absolute', background: '#00C853', borderRadius: 7, border: '1px #CCCCCC solid' }} />
-                            <div style={{ width: 29.21, height: 0, left: 15, top: 29.14, position: 'absolute', transform: 'rotate(-38.05deg)', transformOrigin: '0 0', border: '2px white solid' }}></div>
-                            <div style={{ width: 13.03, height: 0, left: 7, top: 18.86, position: 'absolute', transform: 'rotate(52.13deg)', transformOrigin: '0 0', border: '2px white solid' }}></div>
-                        </div>
-                        <div style={{ width: 164, height: 38.57, left: 52, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Gratuito</div>
+                        <input type="radio" name="plano" id="gratuito" style={{ width: 45, height: 38.57, left: 0, top: 0, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 7, border: '1px #CCCCCC solid' }} />
+                        <label htmlFor="gratuito" style={{ width: 164, height: 38.57, left: 52, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Gratuito</label>
                     </div>
                     <div style={{ width: 216, height: 38.57, left: 239, top: 51.43, position: 'absolute' }}>
-                        <div style={{ width: 45, height: 38.57, left: 0, top: 0, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 7, border: '1px #CCCCCC solid' }} />
-                        <div style={{ width: 164, height: 38.57, left: 52, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>VIP</div>
+                        <input type="radio" name="plano" id="vip" style={{ width: 45, height: 38.57, left: 0, top: 0, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 7, border: '1px #CCCCCC solid' }} />
+                        <label htmlFor="vip" style={{ width: 164, height: 38.57, left: 52, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>VIP</label>
                     </div>
-                    <div style={{ width: 531, height: 37.71, left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Plano:</div>
                 </div>
                 <div style={{ width: 258, height: 63, left: 139, top: 552, position: 'absolute' }}>
                     <div style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', background: '#0EB36D', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 8, border: '1px rgba(198.89, 112.87, 112.87, 0.13) solid' }} />
-                    <div style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#F5F5F5', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Cadastrar</div>
+                    <button type="submit"
+                        style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#F5F5F5', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>
+                        Cadastrar
+                    </button>
                 </div>
                 <div style={{ width: 258, height: 63, left: 139, top: 700, position: 'absolute' }}>
                     <div style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', background: '#FF6347', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 8, border: '1px rgba(198.89, 112.87, 112.87, 0.13) solid' }} />
-                    <div style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#F5F5F5', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Entrar</div>
+                    <button style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#F5F5F5', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>
+                        Entrar
+                    </button>
                 </div>
                 <div style={{ width: 282, left: 127, top: 662, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 20, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Já possui uma conta?</div>
             </div>

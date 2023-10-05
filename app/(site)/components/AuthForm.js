@@ -102,7 +102,7 @@ export const AuthForm = ({tooglePage}) => {
                                 Cadastre-se
                         </button>
                     </div>
-                    <div style={{ width: 258, left: 127, top: 529, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 20, fontFamily: 'Roboto', fontWeight: '400', textDecoration: 'underline', wordWrap: 'break-word' }}>Esqueceu sua senha?</div>
+                    <a href="/pagina-de-recuperacao-de-senha" style={{ width: 258, left: 127, top: 529, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 20, fontFamily: 'Roboto', fontWeight: '400', textDecoration: 'underline', wordWrap: 'break-word', cursor: 'pointer' }}>Esqueceu sua senha?</a>
                     <div style={{ width: 282, left: 115, top: 681, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 20, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Não possui uma conta ainda?</div>
                     <img style={{ width: 240, height: 189, left: 127, top: 0, position: 'absolute' }} src="/image/Logo Chef Virtual.png" />
                 </div>
