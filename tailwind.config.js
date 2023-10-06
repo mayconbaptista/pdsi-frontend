@@ -7,6 +7,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        orange: "#FF6347",
+        primary: "#FF69b4", // Can always use CSS variables too e.g. "var(--color-primary)",
+        secondary: "#333333",
+        brand: "#243c5a",
+      },
       gridTemplateColumns: {
         sidebar: "300px auto", // 👈 for sidebar layout. adds grid-cols-sidebar class
       }, 
@@ -24,7 +30,7 @@ module.exports = {
       },
       minHeight:{
         'chat': 'calc(100vh - 7rem)'
-      }
+      },
     },
   },
   plugins: [],

@@ -49,6 +49,7 @@ export const MessageInput = ({onSend}) => {
                     placeholder="Mensagem"
                     autoCapitalize="sentences"
                     autoFocus
+                    autoComplete="not"
                     className="
                         p-2
                         w-11/12
