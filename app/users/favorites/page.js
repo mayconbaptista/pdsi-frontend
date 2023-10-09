@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { HeartIcon,ShareIcon,FunnelIcon} from "@heroicons/react/24/outline";
+import { Modal,ModalContent,ModalBody,ModalHeader } from "@nextui-org/react";
 
 const Favorites = () => {
 
@@ -102,7 +103,7 @@ const FavoriteField = ({message,categorie}) => {
                 overflow-x-hidden
                 px-2
                 rounded-l-lg
-                hover:w-1/3
+                hover:w-1/3 hover:md:w-1/4
             `}>
                 <p className="px-2 text-white font-bold">{categorie}</p>
             </div>
