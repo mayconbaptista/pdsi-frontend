@@ -70,44 +70,44 @@ export const AuthForm = ({tooglePage}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-                <div style={{ width: 1313, height: 892, left: 62, top: 66, position: 'absolute', background: 'white', borderRadius: 15, border: '1px #CCCCCC solid' }} />
-                <div style={{ width: 650, height: 892, left: 62, top: 66, position: 'absolute' }}>
-                    <div style={{ width: 650, height: 892, left: 0, top: 0, position: 'absolute', background: '#FF6347', borderTopLeftRadius: 15, borderTopRightRadius: 15 }} />
-                    <img style={{ width: 650, height: 892, left: 0, top: 0, position: 'absolute', borderTopLeftRadius: 15, borderTopRightRadius: 15 }} src='/image/Rectangle3.png' />
+                <div className="w-[1313px] h-[892px] left-[62px] top-[66px] absolute bg-white rounded-[15px] border border-stone-300" />
+                <div className="w-[650px] h-[892px] left-[62px] top-[66px] absolute">
+                    <div className="w-[650px] h-[892px] left-0 top-0 absolute bg-orange rounded-tl-[15px] rounded-bl-[15px]" />
+                    <img className="w-[650px] h-[892px] left-0 top-0 absolute rounded-tl-[15px] rounded-bl-[15px]" src='/image/Rectangle3.png' />
                 </div>
-                <div style={{ width: 512, height: 780, left: 793, top: 119, position: 'absolute' }}>
+                <div className="w-[512px] h-[780px] left-[793px] top-[119px] absolute">
                     {/* senha */}
-                    <div style={{ width: 512, height: 72, left: 0, top: 329, position: 'absolute' }}>
+                    <div className="w-[512px] h-[72px] left-0 top-[329px] absolute">
                         <input type="password" onChange={(event) => { setPassword(event.target.value) }} required
-                            style={{ width: 501, left: 11, top: 27, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word', border: 'none', outline: 'none', borderBottom: '2px #332E2E solid' }} 
+                            className="w-[501px] left-[11px] top-[27px] absolute text-zinc-800 text-3xl font-bold font-['Roboto'] border-b-2 border-zinc-800 outline-none"
                             placeholder="Senha" />
                     </div>
                     {/* usuário */}
-                    <div style={{ width: 512, height: 72, left: 0, top: 217, position: 'absolute' }}>
+                    <div className="w-[512px] h-[72px] left-0 top-[217px] absolute">
                         <input type="text" onChange={(event) => { setUsername(event.target.value) }} required
-                            style={{ width: 501, left: 11, top: 27, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word', border: 'none', outline: 'none', borderBottom: '2px #332E2E solid' }} 
+                            className="w-[501px] left-[11px] top-[27px] absolute text-zinc-800 text-3xl font-bold font-['Roboto'] border-b-2 border-zinc-800 outline-none"
                             placeholder="Usuário" />
                     </div>
-                    <div style={{ width: 258, height: 63, left: 127, top: 453, position: 'absolute' }}>
-                        <div style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', background: '#0EB36D', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 8, border: '1px rgba(198.89, 112.87, 112.87, 0.13) solid' }} />
+                    <div className="w-[258px] h-[63px] left-[127px] top-[453px] absolute">
+                        <div className="w-[258px] h-[63px] left-0 top-0 absolute bg-emerald-500 rounded-lg shadow border border-red-400 border-opacity-10" />
                         <button type="submit" 
-                            style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#F5F5F5', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>
+                            className="w-[258px] h-[63px] left-0 top-0 absolute text-center text-neutral-100 text-3xl font-bold font-['Roboto']">
                                 Entrar
                         </button>
                     </div>
-                    <div style={{ width: 258, height: 63, left: 127, top: 717, position: 'absolute' }}>
-                        <div style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', background: '#FF6347', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 8, border: '1px rgba(198.89, 112.87, 112.87, 0.13) solid' }} />
+                    <div className="w-[258px] h-[63px] left-[127px] top-[717px] absolute">
+                        <div className="w-[258px] h-[63px] left-0 top-0 absolute bg-orange rounded-lg shadow border border-red-400 border-opacity-10" />
                         <button type='button' onClick={() => tooglePage()}
-                            style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#F5F5F5', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>
+                            className="w-[258px] h-[63px] left-0 top-0 absolute text-center text-neutral-100 text-3xl font-bold font-['Roboto']">
                                 Cadastre-se
                         </button>
                     </div>
-                    <a href="/pagina-de-recuperacao-de-senha" style={{ width: 258, left: 127, top: 529, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 20, fontFamily: 'Roboto', fontWeight: '400', textDecoration: 'underline', wordWrap: 'break-word', cursor: 'pointer' }}>Esqueceu sua senha?</a>
-                    <div style={{ width: 282, left: 115, top: 681, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 20, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Não possui uma conta ainda?</div>
-                    <img style={{ width: 240, height: 189, left: 127, top: 0, position: 'absolute' }} src="/image/Logo Chef Virtual.png" />
+                    <a href="/pagina-de-recuperacao-de-senha" className="w-[258px] left-[127px] top-[529px] absolute text-center text-zinc-800 text-xl font-normal font-['Roboto'] underline">Esqueceu sua senha?</a>
+                    <div className="w-[282px] left-[115px] top-[681px] absolute text-center text-zinc-800 text-xl font-normal font-['Roboto']">Não possui uma conta ainda?</div>
+                    <img className="w-60 h-[189px] left-[127px] top-0 absolute" src="/image/Logo Chef Virtual.png" />
                 </div>
-                <img style={{ width: 48, height: 82, left: 1273, top: 66, position: 'absolute' }} src="/image/Vector.png" />
-                <div style={{ width: 584, height: 376, left: 95, top: 322, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 45, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Precisou de ajuda na cozinha? Deixa com o Chef!</div>
+                <img className="w-[48px] h-[82px] left-[1273px] top-[66px] absolute" src="/image/Vector.png" />
+                <div className="w-[584px] h-[376px] left-[95px] top-[322px] absolute text-center text-white text-[45px] font-bold font-['Roboto']">Precisou de ajuda na cozinha? Deixa com o Chef!</div>
         </form>
     )
 }
