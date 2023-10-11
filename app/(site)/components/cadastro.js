@@ -1,81 +1,81 @@
 export default function Cadastro() {
     return (
         <div>
-            <div style={{ width: 1313, height: 892, left: 62, top: 66, position: 'absolute', background: 'white', borderRadius: 15, border: '1px #CCCCCC solid' }} />
-            <div style={{ width: 662, height: 892, left: 721, top: 66, position: 'absolute' }}>
-                <div style={{ width: 654, height: 892, left: 0, top: 0, position: 'absolute' }}>
-                    <div style={{ width: 654, height: 892, left: 0, top: 0, position: 'absolute', background: '#FF6347', borderTopLeftRadius: 15, borderTopRightRadius: 15 }} />
-                    <img style={{ width: 654, height: 892, left: 0, top: 0, position: 'absolute', borderTopLeftRadius: 15, borderTopRightRadius: 15 }} src="/image/Rectangle3.png" />
+            <div className="w-[1313px] h-[892px] left-[62px] top-[66px] absolute bg-white rounded-[15px] border border-stone-300" />
+            <div className="w-[662px] h-[892px] left-[721px] top-[66px] absolute">
+                <div className="w-[654px] h-[892px] left-0 top-0 absolute">
+                    <div className="w-[654px] h-[892px] left-0 top-0 absolute bg-orange rounded-tr-[15px] rounded-br-[15px]" />
+                    <img className="w-[654px] h-[892px] left-0 top-0 absolute rounded-tr-[15px] rounded-br-[15px]" src="/image/Rectangle3.png" />
                 </div>
-                <div style={{ width: 546, height: 145, left: 66, top: 274, position: 'absolute' }}>
-                    <div style={{ width: 546, height: 145, left: 0, top: 0, position: 'absolute', background: '#F5F5F5', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 10, border: '1px #CCCCCC solid' }} />
-                    <div style={{ width: 546, height: 145, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Perguntas ilimitadas sobre<br />tópicos culinários</div>
+                <div className="w-[546px] h-[145px] left-[66px] top-[274px] absolute">
+                    <div className="w-[546px] h-[145px] left-0 top-0 absolute bg-neutral-100 rounded-[10px] shadow border border-stone-300" />
+                    <div className="w-[546px] h-[145px] left-0 top-0 absolute text-center text-zinc-800 text-3xl font-normal font-['Roboto']">Perguntas ilimitadas sobre<br />tópicos culinários</div>
                 </div>
-                <div style={{ width: 546, height: 145, left: 66, top: 437, position: 'absolute' }}>
-                    <div style={{ width: 546, height: 145, left: 0, top: 0, position: 'absolute', background: '#F5F5F5', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 10, border: '1px #CCCCCC solid' }} />
-                    <div style={{ width: 515, height: 145, left: 16, top: 0, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Você consegue gerar suas receitas pelo Whatsapp</div>
+                <div className="w-[546px] h-[145px] left-[66px] top-[437px] absolute">
+                    <div className="w-[546px] h-[145px] left-0 top-0 absolute bg-neutral-100 rounded-[10px] shadow border border-stone-300" />
+                    <div className="w-[515px] h-[145px] left-[16px] top-0 absolute text-center text-zinc-800 text-3xl font-normal font-['Roboto']">Você consegue gerar suas receitas pelo Whatsapp</div>
                 </div>
-                <div style={{ width: 546, height: 145, left: 66, top: 600, position: 'absolute' }}>
-                    <div style={{ width: 546, height: 145, left: 0, top: 0, position: 'absolute', background: '#F5F5F5', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 10, border: '1px #CCCCCC solid' }} />
-                    <div style={{ width: 515, height: 145, left: 16, top: 0, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Salve mensagens e as melhores receitas<br />e veja quando quiser!</div>
+                <div className="w-[546px] h-[145px] left-[66px] top-[600px] absolute">
+                    <div className="w-[546px] h-[145px] left-0 top-0 absolute bg-neutral-100 rounded-[10px] shadow border border-stone-300" />
+                    <div className="w-[515px] h-[145px] left-[16px] top-0 absolute text-center text-zinc-800 text-3xl font-normal font-['Roboto']">Salve mensagens e as melhores receitas<br />e veja quando quiser!</div>
                 </div>
-                <div style={{ width: 351, left: 164, top: 215, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 35, fontFamily: 'Roboto', fontWeight: '800', wordWrap: 'break-word' }}>Benefícios VIP</div>
-                <div style={{ width: 513, height: 80, left: 149, top: 788, position: 'absolute', textAlign: 'center' }}>
+                <div className="w-[351px] left-[164px] top-[215px] absolute text-center text-zinc-800 text-[35px] font-extrabold font-['Roboto']">Benefícios VIP</div>
+                <div className="w-[513px] h-20 left-[149px] top-[788px] absolute text-center">
                     <span style={{ color: 'white', fontSize: 57, fontFamily: 'Rowdies', fontWeight: '400', wordWrap: 'break-word' }}>R$ 19,90</span>
                     <span style={{ color: 'white', fontSize: 35, fontFamily: 'Rowdies', fontWeight: '400', wordWrap: 'break-word' }}> </span>
                     <span style={{ color: 'white', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>por mês</span>
                 </div>
-                <div style={{ left: 71, top: 763, position: 'absolute', textAlign: 'center', color: 'white', fontSize: 27, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Seja VIP por</div>
-                <img style={{ width: 240, height: 189, left: 207, top: 17, position: 'absolute' }} src="/image/Logo Chef Virtual.png" />
+                <div className="left-[71px] top-[763px] absolute text-center text-white text-[27px] font-normal font-['Roboto']">Seja VIP por</div>
+                <img className="w-60 h-[189px] left-[207px] top-[17px] absolute" src="/image/Logo Chef Virtual.png" />
             </div>
-            <div style={{ width: 536, height: 763, left: 119, top: 133, position: 'absolute' }}>
-                <div style={{ width: 536, height: 44, left: 0, top: 0, position: 'absolute', color: 'black', fontSize: 35, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Cadastro:</div>
+            <div className="w-[536px] h-[763px] left-[119px] top-[133px] absolute">
+                <div className="w-[536px] h-11 left-0 top-0 absolute text-black text-[35px] font-bold font-['Roboto']">Cadastro:</div>
                 {/* usuário */}
-                <div style={{ width: 536, height: 93, left: 0, top: 59, position: 'absolute' }}>
-                    <input style={{ width: 536, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} type="text" />
-                    <div style={{ left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Usuario</div>
+                <div className="w-[536px] h-[93px] left-0 top-[59px] absolute">
+                    <input className="w-[536px] h-[48px] left-0 top-[41px] absolute bg-transparent rounded-md border border-gray-300" type="text" />
+                    <div className="left-0 top-0 absolute text-zinc-800 text-3xl font-bold font-['Roboto']">Usuario</div>
                 </div>
                 {/* senha */}
-                <div style={{ width: 266, height: 93, left: 0, top: 173, position: 'absolute' }}>
-                    <input style={{ width: 266, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} type="password" />
-                    <div style={{ width: 266, left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Senha</div>
+                <div className="w-[266px] h-[93px] left-0 top-[173px] absolute">
+                    <input className="w-[266px] h-[48px] left-0 top-[41px] absolute bg-transparent rounded-md border border-gray-300" type="password" />
+                    <div className="w-[266px] left-0 top-0 absolute text-zinc-800 text-3xl font-bold font-['Roboto']">Senha</div>
                 </div>
                 {/* confirmar senha */}
-                <div style={{ width: 266, height: 93, left: 270, top: 173, position: 'absolute' }}>
-                    <input style={{ width: 266, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} type="password" />
-                    <div style={{ width: 266, left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Confirmar senha</div>
+                <div className="w-[266px] h-[93px] left-[270px] top-[173px] absolute">
+                    <input className="w-[266px] h-[48px] left-0 top-[41px] absolute bg-transparent rounded-md border border-gray-300" type="password" />
+                    <div className="w-[266px] left-0 top-0 absolute text-zinc-800 text-3xl font-bold font-['Roboto']">Confirmar senha</div>
                 </div>
                 {/* email */}
-                <div style={{ width: 536, height: 93, left: 0, top: 288, position: 'absolute' }}>
-                    <input style={{ width: 536, height: 48, left: 0, top: 41, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 5, border: '1px #CCCCCC solid' }} type="email" />
-                    <div style={{ left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Email</div>
+                <div className="w-[536px] h-[93px] left-0 top-[288px] absolute">
+                    <input className="w-[536px] h-[48px] left-0 top-[41px] absolute bg-transparent rounded-md border border-gray-300" type="email" />
+                    <div className="left-0 top-0 absolute text-zinc-800 text-3xl font-bold font-['Roboto']">Email</div>
                 </div>
                 {/* checkbox */}
-                <div style={{ width: 531, height: 90, left: 3, top: 403, position: 'absolute' }}>
-                    <div style={{ width: 531, height: 37.71, left: 0, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>Plano:</div>
-                    <div style={{ width: 216, height: 38.57, left: 0, top: 51.43, position: 'absolute' }}>
-                        <input type="radio" name="plano" id="gratuito" style={{ width: 45, height: 38.57, left: 0, top: 0, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 7, border: '1px #CCCCCC solid' }} />
-                        <label htmlFor="gratuito" style={{ width: 164, height: 38.57, left: 52, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Gratuito</label>
+                <div className="w-[531px] h-[90px] left-[3px] top-[403px] absolute">
+                    <div className="w-[531px] h-[37.71px] left-0 top-0 absolute text-zinc-800 text-3xl font-bold font-['Roboto']">Plano:</div>
+                    <div className="w-[216px] h-[38.57px] left-0 top-[51.43px] absolute">
+                        <input type="radio" name="plano" id="gratuito" className="w-[45px] h-[38.57px] left-0 top-0 absolute bg-white bg-opacity-0 rounded-[7px] border border-stone-300" />
+                        <label htmlFor="gratuito" className="w-[164px] h-[38.57px] left-[52px] top-0 absolute text-zinc-800 text-3xl font-normal font-['Roboto']">Gratuito</label>
                     </div>
-                    <div style={{ width: 216, height: 38.57, left: 239, top: 51.43, position: 'absolute' }}>
-                        <input type="radio" name="plano" id="vip" style={{ width: 45, height: 38.57, left: 0, top: 0, position: 'absolute', background: 'rgba(255, 255, 255, 0)', borderRadius: 7, border: '1px #CCCCCC solid' }} />
-                        <label htmlFor="vip" style={{ width: 164, height: 38.57, left: 52, top: 0, position: 'absolute', color: '#332E2E', fontSize: 30, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>VIP</label>
+                    <div className="w-[216px] h-[38.57px] left-[239px] top-[51.43px] absolute">
+                        <input type="radio" name="plano" id="vip" className="w-[45px] h-[38.57px] left-0 top-0 absolute bg-white bg-opacity-0 rounded-[7px] border border-stone-300" />
+                        <label htmlFor="vip" className="w-[164px] h-[38.57px] left-[52px] top-0 absolute text-zinc-800 text-3xl font-normal font-['Roboto']">VIP</label>
                     </div>
                 </div>
-                <div style={{ width: 258, height: 63, left: 139, top: 552, position: 'absolute' }}>
-                    <div style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', background: '#0EB36D', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 8, border: '1px rgba(198.89, 112.87, 112.87, 0.13) solid' }} />
+                <div className="w-[258px] h-[63px] left-[139px] top-[552px] absolute">
+                    <div className="w-[258px] h-[63px] left-0 top-0 absolute bg-emerald-500 rounded-lg shadow border border-red-400 border-opacity-10" />
                     <button type="submit"
-                        style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#F5F5F5', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>
+                        className="w-[258px] h-[63px] left-0 top-0 absolute text-center text-neutral-100 text-3xl font-bold font-['Roboto']">
                         Cadastrar
                     </button>
                 </div>
-                <div style={{ width: 258, height: 63, left: 139, top: 700, position: 'absolute' }}>
-                    <div style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', background: '#FF6347', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: 8, border: '1px rgba(198.89, 112.87, 112.87, 0.13) solid' }} />
-                    <button style={{ width: 258, height: 63, left: 0, top: 0, position: 'absolute', textAlign: 'center', color: '#F5F5F5', fontSize: 30, fontFamily: 'Roboto', fontWeight: '700', wordWrap: 'break-word' }}>
+                <div className="w-[258px] h-[63px] left-[139px] top-[700px] absolute">
+                    <div className="w-[258px] h-[63px] left-0 top-0 absolute bg-orange rounded-lg shadow border border-red-400 border-opacity-10" />
+                    <button className="w-[258px] h-[63px] left-0 top-0 absolute text-center text-neutral-100 text-3xl font-bold font-['Roboto']">
                         Entrar
                     </button>
                 </div>
-                <div style={{ width: 282, left: 127, top: 662, position: 'absolute', textAlign: 'center', color: '#332E2E', fontSize: 20, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>Já possui uma conta?</div>
+                <div className="w-[282px] left-[127px] top-[662px] absolute text-center text-zinc-800 text-xl font-normal font-['Roboto']">Já possui uma conta?</div>
             </div>
         </div>
     )
