@@ -10,23 +10,38 @@ import { usePathname } from "next/navigation";
 
 import { signOut } from "next-auth/react";
 
-const useRoutes = () => {
+function getChat(pathname) {
+    var letters = ['a','b','c','d','e','f','g','h'];
+
+    var chats = []
+
+    chats = letters.map(letter => 
+        ({
+            label: `Chat ${letter.toUpperCase()}`,
+            href: `/users/chat/${letter}`,
+            icon: <ChatBubbleLeftIcon className="w-6 h-6" />,
+            active: pathname == `/users/chat/${letter}`
+        })
+    );
+
+    return chats;
+}
+
+export const useChats = () => {
+    const pathname = usePathname();
+
+    const chats = useMemo( () => 
+        getChat(pathname)
+    ,[pathname]);
+    
+    return chats;
+};
+
+export const useRoutes = () => {
 
     const pathname = usePathname();
 
     const routes = useMemo( () => [
-        {
-            label: 'Chat A',
-            href: '/users/chat/a',
-            icon: <ChatBubbleLeftIcon className="w-6 h-6" />,
-            active: pathname == '/users/chat/a'
-        },
-        {
-            label: 'Chat B',
-            href: '/users/chat/b',
-            icon: <ChatBubbleLeftIcon className="w-6 h-6" />,
-            active: pathname == '/users/chat/b'
-        },
         {
           label: "Favoritos",
           href: "/users/favorites",
@@ -42,6 +57,4 @@ const useRoutes = () => {
     ],[pathname]);
 
     return routes;
-}
-
-export default useRoutes;
+};

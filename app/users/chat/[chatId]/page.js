@@ -15,11 +15,12 @@ export default function Chat({ params }) {
 
   let lId = messages.length;
 
-  useEffect( () => {
-    if(params.chatId != 'a' && params.chatId != 'b'){
-      router.replace("/users");
-    }
-  },[router,params]);
+  // Verificar como fazer da maneira correta
+  // useEffect( () => {
+  //   if(params.chatId != 'a' && params.chatId != 'b'){
+  //     router.replace("/users");
+  //   }
+  // },[router,params]);
 
   useEffect( () => {
     scrollDiv.current.scrollIntoView({ behavior: 'smooth' });

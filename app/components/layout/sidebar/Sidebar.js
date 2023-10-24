@@ -1,10 +1,13 @@
 import classNames from "classnames";
 import SidebarItem from "./SidebarItem";
-import useRoutes from "./sidebarItens";
+import {useRoutes,useChats} from "./sidebarItens";
+
+import { LogoWide} from "@/public/image/LogoWide";
 
 const Sidebar = ({isOpen,reference,closeSidebar}) => {
     
     const routes = useRoutes();
+    const chats = useChats();
 
     return (
         <div
@@ -18,22 +21,40 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
         })}
         ref={reference}
         >
-        <nav className="md:sticky top-0 md:top-2">
-            <div>
-                <h1>LOGO</h1>
-            </div>
-            {/* nav items */}
-            <ul className="py-2 flex flex-col gap-2">
-                {routes.map( (item,index) => { return (
-                    <SidebarItem
-                        key={index}
-                        index={index}
-                        item={item}
-                        onClick={closeSidebar}
+            <nav className="h-full md:sticky top-0 md:top-2 ">
+                <div className="py-2 border-b border-pink-100">
+                    <LogoWide
+                        height={80}
                     />
-                );})}
-            </ul>
-        </nav>
+                </div>
+                {/* nav items */}
+                <div className="py-1">
+                    Conversas
+                </div>
+                <div className="py-2 flex flex-col gap-2 h-[300px] overflow-y-auto border-b border-pink-100">
+                    {chats.map( (item,index) => { return (
+                        <SidebarItem
+                            key={index}
+                            index={index}
+                            item={item}
+                            onClick={closeSidebar}
+                        />
+                    );})}
+                </div>
+                <div className="my-4 py-2 flex flex-col gap-2 border-b border-pink-100">
+                    {routes.map( (item,index) => { return (
+                        <SidebarItem
+                            key={index}
+                            index={index}
+                            item={item}
+                            onClick={closeSidebar}
+                        />
+                    );})}
+                </div>
+                <div className="">
+                    Footer
+                </div>
+            </nav>
         </div>
     );
 };

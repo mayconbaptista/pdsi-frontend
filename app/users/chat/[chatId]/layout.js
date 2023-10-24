@@ -1,6 +1,5 @@
 'use client';
 
-import { MessageInput } from "@/app/components/inputs/messageInput"
 import classNames from "classnames";
 
 export default function ChatsLayout({params,children}) {

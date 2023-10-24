@@ -34,6 +34,9 @@ module.exports = {
       minHeight:{
         'chat': 'calc(100vh - 7rem)'
       },
+      backgroundImage: {
+        'food-pattern': "url('../public/image/patternFood.svg')"
+      }
     },
   },
   plugins: [nextui],
