@@ -3,30 +3,8 @@ export default function Cadastro() {
         <div>
             <div className="w-[1313px] h-[892px] left-[62px] top-[66px] absolute bg-white rounded-[15px] border border-stone-300" />
             <div className="w-[662px] h-[892px] left-[721px] top-[66px] absolute">
-                <div className="w-[654px] h-[892px] left-0 top-0 absolute">
-                    <div className="w-[654px] h-[892px] left-0 top-0 absolute bg-orange rounded-tr-[15px] rounded-br-[15px]" />
-                    <img className="w-[654px] h-[892px] left-0 top-0 absolute rounded-tr-[15px] rounded-br-[15px]" src="/image/Rectangle3.png" />
-                </div>
-                <div className="w-[546px] h-[145px] left-[66px] top-[274px] absolute">
-                    <div className="w-[546px] h-[145px] left-0 top-0 absolute bg-neutral-100 rounded-[10px] shadow border border-stone-300" />
-                    <div className="w-[546px] h-[145px] left-0 top-0 absolute text-center text-zinc-800 text-3xl font-normal font-['Roboto']">Perguntas ilimitadas sobre<br />tópicos culinários</div>
-                </div>
-                <div className="w-[546px] h-[145px] left-[66px] top-[437px] absolute">
-                    <div className="w-[546px] h-[145px] left-0 top-0 absolute bg-neutral-100 rounded-[10px] shadow border border-stone-300" />
-                    <div className="w-[515px] h-[145px] left-[16px] top-0 absolute text-center text-zinc-800 text-3xl font-normal font-['Roboto']">Você consegue gerar suas receitas pelo Whatsapp</div>
-                </div>
-                <div className="w-[546px] h-[145px] left-[66px] top-[600px] absolute">
-                    <div className="w-[546px] h-[145px] left-0 top-0 absolute bg-neutral-100 rounded-[10px] shadow border border-stone-300" />
-                    <div className="w-[515px] h-[145px] left-[16px] top-0 absolute text-center text-zinc-800 text-3xl font-normal font-['Roboto']">Salve mensagens e as melhores receitas<br />e veja quando quiser!</div>
-                </div>
-                <div className="w-[351px] left-[164px] top-[215px] absolute text-center text-zinc-800 text-[35px] font-extrabold font-['Roboto']">Benefícios VIP</div>
-                <div className="w-[513px] h-20 left-[149px] top-[788px] absolute text-center">
-                    <span style={{ color: 'white', fontSize: 57, fontFamily: 'Rowdies', fontWeight: '400', wordWrap: 'break-word' }}>R$ 19,90</span>
-                    <span style={{ color: 'white', fontSize: 35, fontFamily: 'Rowdies', fontWeight: '400', wordWrap: 'break-word' }}> </span>
-                    <span style={{ color: 'white', fontSize: 14, fontFamily: 'Roboto', fontWeight: '400', wordWrap: 'break-word' }}>por mês</span>
-                </div>
-                <div className="left-[71px] top-[763px] absolute text-center text-white text-[27px] font-normal font-['Roboto']">Seja VIP por</div>
-                <img className="w-60 h-[189px] left-[207px] top-[17px] absolute" src="/image/Logo Chef Virtual.png" />
+                <div className="w-[654px] h-[892px] left-0 top-0 absolute bg-orange rounded-tr-[15px] rounded-br-[15px]" />
+                <img className="w-[662px] h-[892px] left-0 top-0 absolute" src="/image/promocionalChef.png" />
             </div>
             <div className="w-[536px] h-[763px] left-[119px] top-[133px] absolute">
                 <div className="w-[536px] h-11 left-0 top-0 absolute text-black text-[35px] font-bold font-['Roboto']">Cadastro:</div>
