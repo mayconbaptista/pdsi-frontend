@@ -1,9 +1,9 @@
-export default function Cadastro() {
+export default function Cadastro({tooglePage}) {
     return (
         <div>
             <div className="w-[1313px] h-[892px] left-[62px] top-[66px] absolute bg-white rounded-[15px] border border-stone-300" />
             <div className="w-[662px] h-[892px] left-[721px] top-[66px] absolute">
-                <div className="w-[654px] h-[892px] left-0 top-0 absolute bg-orange rounded-tr-[15px] rounded-br-[15px]" />
+                <div className="w-[654px] h-[892px] left-0 top-0 absolute bg-orange bg-food-pattern rounded-tr-[15px] rounded-br-[15px]" />
                 <img className="w-[662px] h-[892px] left-0 top-0 absolute" src="/image/promocionalChef.png" />
             </div>
             <div className="w-[536px] h-[763px] left-[119px] top-[133px] absolute">
@@ -49,7 +49,7 @@ export default function Cadastro() {
                 </div>
                 <div className="w-[258px] h-[63px] left-[139px] top-[700px] absolute">
                     <div className="w-[258px] h-[63px] left-0 top-0 absolute bg-orange rounded-lg shadow border border-red-400 border-opacity-10" />
-                    <button className="w-[258px] h-[63px] left-0 top-0 absolute text-center text-neutral-100 text-3xl font-bold font-['Roboto']">
+                    <button className="w-[258px] h-[63px] left-0 top-0 absolute text-center text-neutral-100 text-3xl font-bold font-['Roboto']" onClick={() => tooglePage()}>
                         Entrar
                     </button>
                 </div>

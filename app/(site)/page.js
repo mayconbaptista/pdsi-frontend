@@ -16,7 +16,7 @@ export default function Home() {
   return(
     <div>
       <div style={{ width: 1440, height: 1024, position: 'relative', background: 'linear-gradient(0deg, #F5F5F5 0%, #F5F5F5 100%)', backgroundImage: 'url(/image/Rectangle3.png)' }}>
-        {typeAcess ? (<AuthForm tooglePage={() => acess()}/>) : (<Cadastro/>)}
+        {typeAcess ? (<AuthForm tooglePage={() => acess()}/>) : (<Cadastro tooglePage={() => acess()}/>)}
       </div>
     </div>
   )
