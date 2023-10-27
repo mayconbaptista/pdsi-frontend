@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@nextui-org/react": "^2.1.13",
+    "@uidotdev/usehooks": "^2.4.1",
     "classnames": "^2.3.2",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",

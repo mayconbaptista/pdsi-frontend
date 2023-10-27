@@ -9,7 +9,8 @@
         viewBox="0 0 20000 20000"
     >
         <g 
-            transform="scale(1,1)" 
+            style="transform-origin: center;"
+            transform="scale(1,-1)" 
             fill="#00000007"
         >
         <path d="M635 19963 c11 -65 46 -175 72 -228 73 -145 180 -253 318 -321 138

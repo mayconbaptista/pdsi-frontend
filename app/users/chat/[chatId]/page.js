@@ -38,7 +38,7 @@ export default function Chat({ params }) {
           {messages.length ? (
             messages.map( message => (message))
           ) : (
-            <div className="min-h-chat flex justify-center items-center">Envie uma mensagem para começar</div>
+            <div className="min-h-chat flex justify-center items-center font-bold text-text">Envie uma mensagem para começar</div>
           )}
         </div>
         <MessageInput onSend={updateMessages}/>

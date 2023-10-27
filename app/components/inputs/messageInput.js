@@ -1,9 +1,11 @@
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import classNames from "classnames";
 import { useState } from "react";
 
 export const MessageInput = ({onSend}) => {
 
     const [userMessage,setUserMessage] = useState();
+    const [creativeChefMode,setCreativeChefMode] = useState(false);
 
     // ON FORM SUBMIT
     async function sendMessage(e) {
@@ -24,12 +26,13 @@ export const MessageInput = ({onSend}) => {
 
     return(
         <div className={`
-            bg-white 
-            text-gray-800 
+            bg-text 
+            text-white
             bottom-0 
             sticky 
             h-14 w-full
             z-10
+            relative
         `}>
             <form
                 method="POST"
@@ -46,7 +49,7 @@ export const MessageInput = ({onSend}) => {
                     type="text" 
                     value={userMessage}
                     onChange={ e => setUserMessage(e.target.value)}
-                    placeholder="Mensagem"
+                    placeholder="Digite uma mensagem..."
                     autoCapitalize="sentences"
                     autoFocus
                     required
@@ -55,13 +58,11 @@ export const MessageInput = ({onSend}) => {
                         p-2
                         w-11/12
                         rounded-[7px] 
-                        border 
-                        border-blue-gray-200
+                        border-0
                         bg-transparent 
-                        text-blue-gray-700 
+                        text-white
                         outline outline-0
                         transition duration-500
-                        focus:ring-1 ring-blue-300
                     "
                 />
                 <button 
@@ -72,6 +73,21 @@ export const MessageInput = ({onSend}) => {
                     <PaperAirplaneIcon/>
                 </button>
             </form>
+            <button className={classNames({
+                "absolute -top-9 right-2": true,
+                "py-1 px-3": true,
+                "border-1 border-black rounded-lg": true,
+                "bg-gray-300 text-text hover:bg-gray-500 hover:text-gray-100": !creativeChefMode,
+                "bg-confirm text-white hover:bg-confirm/[1]": creativeChefMode,
+                "bg-opacity-60":true,
+                "transition duration-300":true,
+            })}
+            onClick={() => {
+                setCreativeChefMode(!creativeChefMode);
+            }}
+            >
+                Chefe Criativo
+            </button>
         </div>
     );
 }

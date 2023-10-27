@@ -9,7 +9,7 @@ export default function ChatsLayout({params,children}) {
         >
             <div className={classNames({
                 "text-center": true,
-                "bg-white text-zinc-500": true, // colors
+                "bg-primary text-white font-extrabold text-lg tracking-wide": true, // colors
                 "h-14": true,
                 "t-0":true,
                 "w-full sticky py-4 shadow-sm": true,

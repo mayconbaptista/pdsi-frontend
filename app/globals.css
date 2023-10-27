@@ -6,3 +6,21 @@ html,body,:root{
     height: 100%;
     scroll-behavior: smooth;
 }
+
+.scroll-custom::-webkit-scrollbar{
+    width: 4px;
+    height: 100%;
+}
+
+.scroll-custom::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scroll-custom::-webkit-scrollbar-thumb {
+    background: #00000050;
+    border-radius: 500px;
+}
+
+.scroll-custom::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+}

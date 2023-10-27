@@ -12,9 +12,13 @@ module.exports = {
     extend: {
       colors: {
         orange: "#FF6347",
-        primary: "#FF69b4", // Can always use CSS variables too e.g. "var(--color-primary)",
-        secondary: "#333333",
-        brand: "#243c5a",
+        primary: "#FF6347", // Orange
+        secondary: "#F9A825", // Mostard
+        confirm: "#0EB36D", // Green
+        text: "#332E2E",
+        success: "#00C853",
+        invalid: "#D32F2F",
+        warning: "#E9D502",
       },
       gridTemplateColumns: {
         sidebar: "300px auto", // 👈 for sidebar layout. adds grid-cols-sidebar class
