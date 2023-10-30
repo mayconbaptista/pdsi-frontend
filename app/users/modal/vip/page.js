@@ -42,20 +42,19 @@ function VipModal() {
                         border: "none",
                         overflow: "hidden",
                         backgroundColor: "rgba(255,99,71,255)",
+                        backgroundImage: `url('/image/Rectangle3.png')`,
                     },
                 }}
             >
                 <button className="close-button absolute top-0 right-0 m-4" onClick={() => closeModal()}>X</button>
-                <div className="w-full h-full bg-cover" style={{ backgroundImage: `url('/image/Rectangle3.png')` }}>
-                    <img className="w-[75%] h-[75%] mx-auto" src="/image/promocionalChef.png" />
-                    <div className="text-center">
-                        <p className="mb-4 inline-block">Seja VIP agora mesmo e tenha acesso a todos esses benefícios</p>
-                    </div>
-                    <div class="text-center">
-                        <button class="mb-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                            Virar VIP
-                        </button>
-                    </div>
+                <img className="w-[75%] h-[75%] mx-auto" src="/image/promocionalChef.png" />
+                <div className="text-center">
+                    <p className="mb-4 inline-block">Seja VIP agora mesmo e tenha acesso a todos esses benefícios</p>
+                </div>
+                <div class="text-center">
+                    <button class="mb-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        Virar VIP
+                    </button>
                 </div>
             </Modal>
         </div>
