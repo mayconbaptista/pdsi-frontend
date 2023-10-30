@@ -14,7 +14,7 @@ export default function ChatsLayout({params,children}) {
                 "t-0":true,
                 "w-full sticky py-4 shadow-sm": true,
              })}>
-                <h1>Layout Chat {params.chatId}</h1>
+                <h1>Layout {params.chatId}</h1>
             </div>
             <div className="h-full overflow-y-scroll relative">
                 {children}

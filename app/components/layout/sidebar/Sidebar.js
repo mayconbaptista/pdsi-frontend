@@ -1,20 +1,28 @@
+'use client';
 import classNames from "classnames";
 import SidebarItem from "./SidebarItem";
+import { useSession,getSession} from "next-auth/react";
+import { userSession } from "@/app/api/auth/customSession";
 import {useRoutes,useChats} from "./sidebarItens";
 
 import { LogoWide} from "@/public/image/LogoWide";
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { useEffect,useState } from "react";
 
 const Sidebar = ({isOpen,reference,closeSidebar}) => {
     
     const routes = useRoutes();
     const chats = useChats();
 
-    const UserData = {
-        name: "Apenas um usuario qualquer",
-        plusData: "23/10/2023",
-        nameSymbol: "AU",
-        plus: true,
+    const [UserData,setUserData] = useState({});
+
+    const getUserData = async () => {
+        setUserData(await userSession());
     }
+
+    useEffect( () => {
+        getUserData();
+    },[]);
 
     return (
         <div
@@ -37,8 +45,17 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                 </div>
                 {/* nav items */}
                 <div className="py-1 text-sm mx-2 mt-2 text-text">
-                    Conversas
+                    Seus conselhos do Chef
                 </div>
+                <SidebarItem
+                    item={{
+                        label: "Novo conselho",
+                        href: "",
+                        icon: <PlusCircleIcon className="w-6 h-6" />,
+                        active: false
+                    }}
+                    onClick={() => {}}
+                />
                 <div className="py-2 flex flex-col gap-2 h-[300px] overflow-y-auto border-b border-pink-100 overscroll-contain scroll-custom">
                     {chats.map( (item,index) => { return (
                         <SidebarItem
@@ -46,6 +63,7 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                             index={index}
                             item={item}
                             onClick={closeSidebar}
+                            typeUser={UserData.plus}
                         />
                     );})}
                 </div>

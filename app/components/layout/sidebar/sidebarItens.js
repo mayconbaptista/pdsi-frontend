@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     ChatBubbleLeftIcon,
     StarIcon,
@@ -10,30 +10,27 @@ import { usePathname } from "next/navigation";
 
 import { signOut } from "next-auth/react";
 
-function getChat(pathname) {
-    var letters = ['a','b','c','d','e','f','g','h'];
+function Chat (name,id,pathname){  
 
-    var chats = []
-
-    chats = letters.map(letter => 
-        ({
-            label: `Chat ${letter.toUpperCase()}`,
-            href: `/users/chat/${letter}`,
-            icon: <ChatBubbleLeftIcon className="w-6 h-6" />,
-            active: pathname == `/users/chat/${letter}`
-        })
-    );
-
-    return chats;
-}
+    const isChatActive = pathname == `/users/chat/${id}`;
+    return {
+        label: name,
+        href: `/users/chat/${id}`,
+        icon: <ChatBubbleLeftIcon className="w-6 h-6" />,
+        active: isChatActive
+    };
+};
 
 export const useChats = () => {
     const pathname = usePathname();
+    var letters = ['a','b','c','d','e','f','g','h'];
 
-    const chats = useMemo( () => 
-        getChat(pathname)
-    ,[pathname]);
-    
+    var chats = []
+        chats = letters.map(letter => (
+            Chat(`Conselho ${letter.toUpperCase()}`,letter,pathname)
+        )
+    );
+
     return chats;
 };
 
