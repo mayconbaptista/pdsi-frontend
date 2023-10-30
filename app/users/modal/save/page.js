@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
-function VipModal() {
+function SaveModal() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const openModal = () => {
@@ -14,6 +14,9 @@ function VipModal() {
         setModalIsOpen(false);
     }
 
+    const handleSubmit = async e => {
+    }
+
     return (
         <div>
             <div className='w-1/2 h-screen mx-auto flex items-center'>
@@ -22,43 +25,54 @@ function VipModal() {
                     onClick={() => openModal()}
                 >
                     {" "}
-                    Vip Modal
+                    Save Modal
                 </button>
             </div>
 
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
-                contentLabel='Vip Modal'
+                contentLabel='Save Modal'
                 style={{
                     overlay: {
                         backgroundColor: "rgba(0,0,0,0.2)",
                     },
                     content: {
                         width: "550px",
-                        height: "85vh",
+                        height: "45vh",
                         margin: "auto",
                         padding: "0px",
                         border: "none",
                         overflow: "hidden",
-                        backgroundColor: "rgba(255,99,71,255)",
                     },
                 }}
             >
                 <button className="close-button absolute top-0 right-0 m-4" onClick={() => closeModal()}>X</button>
-                <div className="w-full h-full bg-cover" style={{ backgroundImage: `url('/image/Rectangle3.png')` }}>
-                    <img className="w-[75%] h-[75%] mx-auto" src="/image/promocionalChef.png" />
+                <form onSubmit={handleSubmit}>
                     <div className="text-center">
-                        <p className="mb-4 inline-block">Seja VIP agora mesmo e tenha acesso a todos esses benefícios</p>
+                        <div className="m-4 inline-block text-2xl font-bold">Salvar mensagem em Favoritos</div>
+                    </div>
+                    <div className="m-4 text-xl font-bold">Título</div>
+                    <div className="m-4 flex">
+                        <input className="w-full h-10 border border-2 rounded-md" placeholder=" Informe título para mensagem" />
+                    </div>
+                    <div className="m-4 text-xl font-bold">Categoria</div>
+                    <div className="m-4 flex">
+                        <select className="w-full h-10 border border-2 rounded-md" name="category">
+                            <option></option>
+                            <option value="receita">Receita</option>
+                            <option value="curiosidade">Curiosidade</option>
+                            <option value="geral">Geral</option>
+                        </select>
                     </div>
                     <div class="text-center">
-                        <button class="mb-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                            Virar VIP
+                        <button type="submit" class="mb-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                            Salvar
                         </button>
                     </div>
-                </div>
+                </form>
             </Modal>
         </div>
     );
 }
-export default VipModal;
+export default SaveModal;
