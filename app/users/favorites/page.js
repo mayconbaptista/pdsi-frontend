@@ -3,11 +3,22 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { HeartIcon,ShareIcon,FunnelIcon} from "@heroicons/react/24/outline";
-import { Modal,ModalContent,ModalBody,ModalHeader } from "@nextui-org/react";
+import RecipesModal from "../modal/recipes/page";
+import FilterModal from "../modal/filter/page";
 
 const Favorites = () => {
 
     const [favorites,setFavorites] = useState([]);
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    }
 
     useEffect( () => {
         setFavorites([
@@ -25,6 +36,7 @@ const Favorites = () => {
     },[]);
 
     return (
+        <div>
         <div
             className="h-screen flex flex-col w-full"
         >
@@ -51,7 +63,7 @@ const Favorites = () => {
                     shadow-md
                     duration-200
                     hover:bg-gray-200
-                ">
+                " onClick={openModal}>
                     <FunnelIcon className="h-6 w-6"/>
                 </button>
             </div>
@@ -62,6 +74,8 @@ const Favorites = () => {
                     <div> Voce ainda não possui favoritos</div>
                 )}
             </div>
+        </div>
+        <FilterModal isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} />
         </div>
     );
 }
@@ -80,30 +94,36 @@ const FavoriteField = ({message,categorie}) => {
 
     const type = handleCategorie(categorie);
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    }
+
     return (
+        <div>
         <div className="
             relative
             grid grid-cols-12
             w-11/12 py-3 px-5  my-3
             border border-gray-200 rounded-lg
             bg-white shadow-sm    
-            cursor-pointer
-        "
-        onClick={() => {
-            console.log("Abrir modal");
-        }}
-        >
+            cursor-pointer">
             <div className={`
                 absolute
                 h-full w-1/6 px-2 py-4
                 border-2 rounded-l-lg
                 ${type}
                 text-center  
-            `}>
+            `} onClick={openModal}>
                 <p className="px-1 text-white font-bold">{categorie}</p>
             </div>
             <div className="col-span-2"/>
-            <div className="col-span-8 mx-5 truncate">
+            <div className="col-span-8 mx-5 truncate" onClick={openModal}>
                 Favorito: {message}
             </div>
             <div className="col-span-2 grid grid-cols-2">
@@ -126,6 +146,8 @@ const FavoriteField = ({message,categorie}) => {
                     <HeartIcon className="h-8 w-8 fill-red-900 stroke-current text-red-900"/>
                 </button>
             </div>
+        </div>
+        <RecipesModal isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} />
         </div>
     )
 }
