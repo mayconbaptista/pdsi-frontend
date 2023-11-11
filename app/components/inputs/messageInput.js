@@ -2,7 +2,7 @@ import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import classNames from "classnames";
 import { useState } from "react";
 
-export const MessageInput = ({onSend}) => {
+export const MessageInput = ({onSend,newChat}) => {
 
     const [userMessage,setUserMessage] = useState();
     const [creativeChefMode,setCreativeChefMode] = useState(false);
@@ -12,6 +12,9 @@ export const MessageInput = ({onSend}) => {
         e.preventDefault();
         
         try {
+            if(newChat) {
+                console.log("Nova conversa");
+            }
             console.log("Mensagem enviada");
 
             setUserMessage("");

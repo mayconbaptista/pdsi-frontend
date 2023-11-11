@@ -59,7 +59,8 @@ export const AuthForm = ({tooglePage}) => {
             redirect: false,
         }).then((callback) => {
             if (callback.error) {
-                toast.error("Erro ao realizar login: " + callback.error);
+                toast.error("Erro ao realizar login: Nome de usuário ou senha errada")
+                console.log("Erro ao realizar login: " + callback.error);
             }
             if (callback.ok && !callback.error) {
                 toast.success("Usuario logado com sucesso!");

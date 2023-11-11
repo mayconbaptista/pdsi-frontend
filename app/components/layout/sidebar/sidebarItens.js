@@ -17,7 +17,8 @@ function Chat (name,id,pathname){
         label: name,
         href: `/users/chat/${id}`,
         icon: <ChatBubbleLeftIcon className="w-6 h-6" />,
-        active: isChatActive
+        active: isChatActive,
+        title: `Meu conselho de nome ${id}`,
     };
 };
 
@@ -40,14 +41,14 @@ export const useRoutes = () => {
 
     const routes = useMemo( () => [
         {
-          label: "Favoritos",
-          href: "/users/favorites",
-          icon: <StarIcon className="w-6 h-6" />,
-          active: pathname == '/users/favorites'
+            label: "Favoritos",
+            href: "/users/favorites",
+            icon: <StarIcon className="w-6 h-6" />,
+            active: pathname == '/users/favorites',
         },
         {
             label: "Logout",
-            href: "#",
+            href: "/",
             icon: <ArrowLeftOnRectangleIcon className="w-6 h-6" />,
             onClick: () => signOut(),
         },

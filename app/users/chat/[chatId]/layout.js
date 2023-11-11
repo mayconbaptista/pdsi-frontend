@@ -1,8 +1,19 @@
 'use client';
 
 import classNames from "classnames";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function ChatsLayout({params,children}) {
+
+    const [chatTitle,setChatTitle] = useState("");
+    const searchParams = useSearchParams();
+    const title = searchParams.get('t')
+
+    useEffect( () => {
+        setChatTitle(title ? title : `Conselho ${params.chatId}`)
+    },[params,title]);
+
     return(       
         <div
             className="h-screen flex flex-col w-full"
@@ -14,7 +25,7 @@ export default function ChatsLayout({params,children}) {
                 "t-0":true,
                 "w-full sticky py-4 shadow-sm": true,
              })}>
-                <h1>Layout {params.chatId}</h1>
+                <h1>{chatTitle}</h1>
             </div>
             <div className="h-full overflow-y-scroll relative">
                 {children}

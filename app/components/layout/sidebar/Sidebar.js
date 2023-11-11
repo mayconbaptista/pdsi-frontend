@@ -63,9 +63,10 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                 <SidebarItem
                     item={{
                         label: "Novo conselho",
-                        href: "",
+                        href: "/users/chat/new",
                         icon: <PlusCircleIcon className="w-6 h-6" />,
-                        active: false
+                        active: false,
+                        title: "Novo Conselho"
                     }}
                     onClick={() => {}}
                 />

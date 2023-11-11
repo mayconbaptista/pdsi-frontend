@@ -2,25 +2,35 @@
 
 import { UserMessage,BotMessage } from "@/app/components/messages/chatMessage"
 import { MessageInput } from "@/app/components/inputs/messageInput"
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { isUserBase } from "@/app/api/auth/customSession";
 
 export default function Chat({ params }) {
 
   const scrollDiv = useRef();
-  const router = useRouter();  
+  const router = useRouter();
+
+  const onPageLoad = useCallback( async () => {
+    try{
+      // Proteger urls Usuários gratis
+      const userType = await isUserBase();
+      if(userType && params.chatId != 'new') {
+        router.replace("/users");
+      }
+    }catch (err) {
+      console.log("Error in onPageLoad:users/chat/page",err);
+    }
+  },[router,params]);
+
+  useEffect( () => {
+    onPageLoad();
+  },[onPageLoad]);
 
   // Gambiarra 2000
   const [messages,SetMessages] = useState([]);
 
   let lId = messages.length;
-
-  // Verificar como fazer da maneira correta
-  // useEffect( () => {
-  //   if(params.chatId != 'a' && params.chatId != 'b'){
-  //     router.replace("/users");
-  //   }
-  // },[router,params]);
 
   useEffect( () => {
     scrollDiv.current.scrollIntoView({ behavior: 'smooth' });
@@ -41,7 +51,7 @@ export default function Chat({ params }) {
             <div className="min-h-chat flex justify-center items-center font-bold text-text">Envie uma mensagem para começar</div>
           )}
         </div>
-        <MessageInput onSend={updateMessages}/>
+        <MessageInput onSend={updateMessages} newChat={params.chatId == 'new'}/>
         <div ref={scrollDiv}/>
       </div>
     );

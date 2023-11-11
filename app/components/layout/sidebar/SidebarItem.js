@@ -7,7 +7,7 @@ const SidebarItem = ({index,item,onClick,typeUser=true}) => {
     return(
         <Link 
             key={index} 
-            href={!typeUser ? "" : item.href} 
+            href={!typeUser ? "" : { pathname: item.href, query: item.title ? { t: item.title } : {} }}
             onClick={() => {
                 onClick();
                 item.onClick ? item.onClick() : null
