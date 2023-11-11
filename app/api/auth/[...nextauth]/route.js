@@ -45,13 +45,14 @@ export const authOptions = {
                 };
 
                 try {
-                    const response = await api.get('/v1/sso/token',{
-                        data: data,
+                    const response = await api.post('/v1/sso/token',{
+                        data:data,
                     });
                     const decoded = jwt.decode(response.data.accessToken);
                     console.log('Decoded JWT:', decoded);
 
                     const userData = {
+                        
                         id: decoded.sid,
                         username: credentials.email,
                         name: decoded.name,
@@ -69,7 +70,7 @@ export const authOptions = {
                     if(err.response) {
                         console.log(err.response.data);
                     }
-                    return;
+                    
                     const users = [
                         {
                             id: 1,

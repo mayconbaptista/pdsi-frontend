@@ -22,14 +22,12 @@ export const MessageInput = ({onUserSend,onResponse,newChat}) => {
         try {
             
             // Renovar token usuario
-            const responseToken = await api.get('/v1/sso/token',{
-                data: {
-                    username: 'test',
-                    password: 'Test@123'
-                }
+            const responseToken = await api.post('/v1/sso/token',{
+                
+                username: 'test',
+                password: 'Test@123'
+                
             });
-
-            console.log(responseToken);
 
             const response = await api.post('v1/question',{
                 
@@ -38,7 +36,7 @@ export const MessageInput = ({onUserSend,onResponse,newChat}) => {
                 
             },{
                 headers:{
-                    Authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJaXzg2UlhKV0ptMmlkVW5rMUg4WkVXQU1zNm4tZ3c5ZTFoVzk2X25OOVFrIn0.eyJleHAiOjE2OTk3MzA3OTgsImlhdCI6MTY5OTczMDQ5OCwianRpIjoiODI3MDFkZDItNDZkZS00ZGE5LTg0OWMtZmI2ZTQ2MGRmMTY2IiwiaXNzIjoiaHR0cDovL2tleWNsb2FrOjgwODAvcmVhbG1zL2N1bGluYXJ5LWFuc3dlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIzMGJmNmU0Zi1hMjdkLTRlZjUtODZlYS04YzYyMjQ2Y2I0OTciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJiYWNrZW5kLXNlcnZpY2UiLCJzZXNzaW9uX3N0YXRlIjoiY2VkM2ZlNjctYzZiMS00YzdjLWJlODYtNzFlZDAyZWFjNWViIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZnJlZS1xdWVzdGlvbiIsImRlZmF1bHQtcm9sZXMtcXVhcmt1cyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiY2VkM2ZlNjctYzZiMS00YzdjLWJlODYtNzFlZDAyZWFjNWViIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiVGVzdGUgUXVhbHF1ZXIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0ZXN0IiwiZ2l2ZW5fbmFtZSI6IlRlc3RlIFF1YWxxdWVyIiwiZW1haWwiOiJ0ZXN0QHBkc2kuY29tIn0.IrYODsBSOMY6Z10y1Vo0oQ-ux0qtQhrhqzVmfZRRTRpVNU7W0IkqPf6g12jv4TBdVOQ9-6ijKIN3S64GpLvHFk8MYbAjwK-5RKjLBj8uRc3Wt9xKf8WB2ICoM9gXivDQKTzsGvMVddbjrIehDoX5t3MWDkZnXROF6IuHbxwy186y5TXFpw-btm6GvbJc858W_8LjoSe16E6ep7GEJTRZlUdpa-YJVA-uebjXggP8KOA9vX2YOZ8C1SbEjniBWDFPUYlN56Q-cCagb6WqZqvbYGqJduo7Oe9G2AtJQ7GBq852URyC4mLLxTvv6R5rOBWNwZnpMrAdgAnNvp4SGfbluw",
+                    Authorization: "Bearer "+ responseToken.data.accessToken
                 }
                 
             }

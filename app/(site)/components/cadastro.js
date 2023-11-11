@@ -11,18 +11,18 @@ export default function Cadastro({tooglePage}) {
         
         try {
             
-            const dataAdmin = {
-                "username": 'admin',
-                "password": 'admin' 
-            };
+            const responseToken = await api.post('/v1/sso/token',{
+                username: 'admin',
+                password: 'admin' 
+            });
 
-            const responseAdmin = await api.get('/v1/sso/token',dataAdmin);
-
-            console.log(responseAdmin);
-            console.log(data);
-
-            const response = await api.post(`v1/sso/user/${userType}`, {
-                data: data
+            const response = await api.post(`v1/sso/user/${userType}`,
+            data,
+            {
+                headers:{
+                    Authorization: "Bearer "+ responseToken.data.accessToken
+                }
+                
             });
             console.log("User",response);
             isSuccess = true
@@ -48,9 +48,8 @@ export default function Cadastro({tooglePage}) {
             username: formProps.username,
             password: formProps.psw
         }
-        const datajs = JSON.stringify(data)
 
-        const successRegister = await register(datajs,userType)
+        const successRegister = await register(data,userType)
 
         if(successRegister) {
             toast.success("Usuario criado com sucesso!");
