@@ -2,10 +2,39 @@
 
 import Modal from "react-modal";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import api from "@/app/api/api";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 function SaveModal(props) {
 
+    const [title,setTitle] = useState("");
+    const [categorie,setCategorie] = useState("");
+
     const handleSubmit = async e => {
+
+        e.preventDefault();
+
+        const username = "test";
+
+        const data = {
+            "questionId": props.id ? props.id : "123",
+            "topic": categorie.toUpperCase(),
+            "tittle": title
+        }
+        
+        try {
+            const response = api.put(`/v1/question/${username}/favorites`,{
+                data: data,
+            });
+
+            console.log(response);
+
+            toast.success("Mensagem favoritada com sucesso!!!");
+
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
@@ -36,11 +65,25 @@ function SaveModal(props) {
                     </div>
                     <div className="m-4 text-xl font-bold">Título</div>
                     <div className="m-4 flex">
-                        <input className="w-full h-10 border border-2 rounded-md" placeholder=" Informe título para mensagem" />
+                        <input 
+                            className="w-full h-10 border border-2 rounded-md" 
+                            placeholder=" Informe título para mensagem" 
+                            onChange={ e => {
+                                setTitle(e.target.value);
+                            }}
+                            value={title}
+                        />
                     </div>
                     <div className="m-4 text-xl font-bold">Categoria</div>
                     <div className="m-4 flex">
-                        <select className="w-full h-10 border border-2 rounded-md" name="category">
+                        <select 
+                            className="w-full h-10 border border-2 rounded-md" 
+                            name="category"
+                            onChange={ e => {
+                                setCategorie(e.target.value);
+                            }}
+                            value={categorie}
+                        >
                             <option></option>
                             <option value="receita">Receita</option>
                             <option value="curiosidade">Curiosidade</option>
@@ -48,7 +91,7 @@ function SaveModal(props) {
                         </select>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="mb-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                        <button type="submit" class="mb-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={handleSubmit}>
                             Salvar
                         </button>
                     </div>

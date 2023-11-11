@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     ChatBubbleLeftIcon,
     StarIcon,
@@ -9,6 +9,7 @@ import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 
 import { signOut } from "next-auth/react";
+import api from "@/app/api/api";
 
 function Chat (name,id,pathname){  
 
@@ -22,15 +23,43 @@ function Chat (name,id,pathname){
     };
 };
 
-export const useChats = () => {
-    const pathname = usePathname();
-    var letters = ['a','b','c','d','e','f','g','h'];
+const getRecentsChats = async () => {
+    const username = "test"
 
-    var chats = []
-        chats = letters.map(letter => (
+    try {
+        const response = await api.get(`v1/question/${username}/latest`);
+
+        console.log(response);
+
+    } catch (err) {
+        console.log("error in get chats")
+    } finally {
+        return ['a','b','c','d','e','f','g','h'];
+    }
+}
+
+export const useChats = () => {
+
+    const pathname = usePathname();
+
+    const [letters,setLetters] = useState([]);
+    const [chats,setChats] = useState([]);
+
+    useEffect(()=>{
+        const getChats = async() => {
+            const chats = await getRecentsChats()
+            setLetters(chats);
+        }
+        getChats();
+    },[]);
+
+    useEffect( () => {
+        let aux = []
+        aux = letters.map(letter => (
             Chat(`Conselho ${letter.toUpperCase()}`,letter,pathname)
-        )
-    );
+        ));
+        setChats(aux);
+    } ,[letters,pathname])
 
     return chats;
 };

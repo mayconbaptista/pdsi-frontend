@@ -48,7 +48,6 @@ export const authOptions = {
                     const response = await api.get('/v1/sso/token',{
                         data: data,
                     });
-                    console.log(response)
                     const decoded = jwt.decode(response.data.accessToken);
                     console.log('Decoded JWT:', decoded);
 
@@ -67,7 +66,6 @@ export const authOptions = {
                     return Promise.resolve(userData);
 
                 }catch(err) {
-                    console.log("ALL",err)
                     if(err.response) {
                         console.log(err.response.data);
                     }

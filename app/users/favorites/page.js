@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { HeartIcon,ShareIcon,FunnelIcon} from "@heroicons/react/24/outline";
 import RecipesModal from "../modal/recipes/page";
 import FilterModal from "../modal/filter/page";
+import api from "@/app/api/api";
 
 const Favorites = () => {
 
@@ -21,18 +22,35 @@ const Favorites = () => {
     }
 
     useEffect( () => {
-        setFavorites([
-            <FavoriteField key={1} message={"Texto favorito 1"} categorie={'Receita'}/>,
-            <FavoriteField key={2} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
-            <FavoriteField key={3} message={"Texto favorito 1"} categorie={'Outro'}/>,
-            <FavoriteField key={4} message={"Texto favorito 1"} categorie={'Receita'}/>,
-            <FavoriteField key={5} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
-            <FavoriteField key={6} message={"Texto favorito 1"} categorie={'Outro'}/>,
-            <FavoriteField key={7} message={"Texto favorito 1"} categorie={'Receita'}/>,
-            <FavoriteField key={8} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
-            <FavoriteField key={9} message={"Texto favorito 1"} categorie={'Outro'}/>,
-            <FavoriteField key={10} message={"Texto favorito 1"} categorie={'Receita'}/>,
-        ])
+
+        const getFavourites = async () => {
+
+            const username = "test";
+            try {
+                const response = api.get(`/v1/question/${username}/favorites`);
+
+                console.log(response);
+                
+                setFavorites([
+                    <FavoriteField key={1} message={"Texto favorito 1"} categorie={'Receita'}/>,
+                    <FavoriteField key={2} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
+                    <FavoriteField key={3} message={"Texto favorito 1"} categorie={'Outro'}/>,
+                    <FavoriteField key={4} message={"Texto favorito 1"} categorie={'Receita'}/>,
+                    <FavoriteField key={5} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
+                    <FavoriteField key={6} message={"Texto favorito 1"} categorie={'Outro'}/>,
+                    <FavoriteField key={7} message={"Texto favorito 1"} categorie={'Receita'}/>,
+                    <FavoriteField key={8} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
+                    <FavoriteField key={9} message={"Texto favorito 1"} categorie={'Outro'}/>,
+                    <FavoriteField key={10} message={"Texto favorito 1"} categorie={'Receita'}/>,
+                ]);
+                
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        getFavourites();
+        
     },[]);
 
     return (

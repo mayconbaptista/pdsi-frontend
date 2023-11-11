@@ -30,29 +30,33 @@ export default function Chat({ params }) {
   // Gambiarra 2000
   const [messages,SetMessages] = useState([]);
 
-  let lId = messages.length;
+  const lId = useRef(0);
 
   useEffect( () => {
     scrollDiv.current.scrollIntoView({ behavior: 'smooth' });
   },[messages]);
-
-  const updateMessages = (newMsg) => {
-    lId++
-    SetMessages([...messages,UserMessage(newMsg,lId),BotMessage(`Minha Resposta: ${newMsg}`,lId+1)]);
-    lId++
+  
+  const addUserMessage = (message) => {
+    lId.current++;
+    SetMessages(messages => [...messages,UserMessage(message,lId.current)]);
+  }
+  
+  const addBotMessage = message => {
+    lId.current++;
+    SetMessages(messages => [...messages,BotMessage("Minha resposta: "+ message,lId.current)]);
   }
 
-    return (
-      <div className="flex flex-col w-full">
-        <div className="min-h-chat">
-          {messages.length ? (
-            messages.map( message => (message))
-          ) : (
-            <div className="min-h-chat flex justify-center items-center font-bold text-text">Envie uma mensagem para começar</div>
-          )}
-        </div>
-        <MessageInput onSend={updateMessages} newChat={params.chatId == 'new'}/>
-        <div ref={scrollDiv}/>
+  return (
+    <div className="flex flex-col w-full">
+      <div className="min-h-chat">
+        {messages.length ? (
+          messages.map( message => (message))
+        ) : (
+          <div className="min-h-chat flex justify-center items-center font-bold text-text">Envie uma mensagem para começar</div>
+        )}
       </div>
-    );
-  }
+      <MessageInput onUserSend={addUserMessage} onResponse={addBotMessage} newChat={params.chatId == 'new'}/>
+      <div ref={scrollDiv}/>
+    </div>
+  );
+}

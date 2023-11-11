@@ -1,8 +1,38 @@
 import { toast } from 'react-hot-toast';
 import api from '@/app/api/api';
+import axios from 'axios';
 import { signIn, useSession } from "next-auth/react";
 
 export default function Cadastro({tooglePage}) {
+
+    async function register(data,userType) {
+
+        let isSuccess = false;
+        
+        try {
+            
+            const dataAdmin = {
+                "username": 'admin',
+                "password": 'admin' 
+            };
+
+            const responseAdmin = await api.get('/v1/sso/token',dataAdmin);
+
+            console.log(responseAdmin);
+            console.log(data);
+
+            const response = await api.post(`v1/sso/user/${userType}`, {
+                data: data
+            });
+            console.log("User",response);
+            isSuccess = true
+
+        } catch (err) {
+            console.log(err);
+        } finally {
+            return isSuccess;
+        }
+    }
 
     async function onFormSubmit(e) {
         e.preventDefault();
@@ -10,53 +40,24 @@ export default function Cadastro({tooglePage}) {
         const formData = new FormData(e.target);
         const formProps = Object.fromEntries(formData);
 
-        formData.append('username',formProps.username);
-        formData.append('password',formProps.psw);
-
-        const formjson = JSON.stringify(formData)
-
         const userType = formProps.plano == 'on' ? 'free' : 'member'
         
-        //await signIn();
         // Logar como admin e completar o Header
-        try {
-
-            signIn('credentials', {
-                email: 'admin',
-                password: 'admin',
-                redirect: false,
-            }).then((callback) => {
-                if (callback.error) {
-                    toast.error("Erro ao realizar login: " + callback.error);
-                }
-                if (callback.ok && !callback.error) {
-                    toast.success("Usuario logado com sucesso!");
-                }
-            });
-
-            // const responseAdmin = await api.get('/v1/sso/token',{
-            //     data: {
-            //         username: 'admin',
-            //         password: 'admin',
-            //     },
-            // });
-
-            console.log(responseAdmin);
-
-            const response = await api.post(`v1/sso/user/${userType}`,{
-                data: formjson,
-                headers: {
-                    //'Authorization': "Bearer " + responseAdmin.data.accessToken,
-                    'Authorization' : "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJaXzg2UlhKV0ptMmlkVW5rMUg4WkVXQU1zNm4tZ3c5ZTFoVzk2X25OOVFrIn0.eyJleHAiOjE2OTk2NDc5MTAsImlhdCI6MTY5OTY0NzYxMCwianRpIjoiOWI1YWE0YmItOGUwZS00NTMyLWIzMTEtY2U0ZTU1OGQ0MDY5IiwiaXNzIjoiaHR0cDovL2tleWNsb2FrOjgwODAvcmVhbG1zL2N1bGluYXJ5LWFuc3dlciIsInN1YiI6ImFmMTM0Y2FiLWY0MWMtNDY3NS1iMTQxLTIwNWY5NzVkYjY3OSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiJhMjc1ZDAzYy02YWQyLTQ4MTYtYjk0ZC1iNTJiMDc2MjM1OGUiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsidW5saW1pdGVkLXF1ZXN0aW9uIiwiYWRtaW4iLCJ1c2VyIl19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiJhMjc1ZDAzYy02YWQyLTQ4MTYtYjk0ZC1iNTJiMDc2MjM1OGUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJBZG1pbiBkYSBTaWx2YSIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiZ2l2ZW5fbmFtZSI6IkFkbWluIiwiZmFtaWx5X25hbWUiOiJkYSBTaWx2YSIsImVtYWlsIjoiYWRtaW5AcHNkaS5jb20ifQ.TmAj39wvIlhmWKxcdL8Hb6iwtMTSPYcxs2V48Uc52QRP5zKj34IoYyU4oJtxpIZwvvVwZyVxShe5USYJKAlIViDrXoQhgIohoHmTVezz6Z4UtEcI1fyG271pVZbF1jXEAnPQiVuuCCEJ7ydJst0nYuNssQA6UqS7UIytohA8-1ArHtOF3o1I519_6O48Cr5QGqASghRt_ac6Zg27ZKyP4vlCHGwyA_gg49cF2J2R2ugStq-IWLJWxLDq159YwfPFx4HlxMzG7QY4mcA0FjvykbCpRkKieYqwkpXwHsCd7Uv7b_xBddgw2FLejfB1pct4JBZbfsrA_P9_KKq-izXJBQ"
-                }
-            });
-
-            console.log(response);
-            toast.success("Usuario criado com sucesso!");
-
-        } catch(err) {
-            console.log("error in cadastro.js",err);
+        
+        const data = {
+            username: formProps.username,
+            password: formProps.psw
         }
+        const datajs = JSON.stringify(data)
+
+        const successRegister = await register(datajs,userType)
+
+        if(successRegister) {
+            toast.success("Usuario criado com sucesso!");
+        } else {
+            toast.error("Erro ao criar usuário");
+        }
+    
     }
 
     return (
