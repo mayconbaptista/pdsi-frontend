@@ -1,7 +1,7 @@
 import { HeartIcon,ShareIcon, EllipsisHorizontalIcon } from "@heroicons/react/24/outline";
 import { useState,useRef } from "react";
 import { useOnClickOutside, } from "usehooks-ts";
-import { useLongPress } from "@uidotdev/usehooks";
+import SaveModal from "../../users/modal/save/page"
 
 const ChatMessage = (id,msg,styleCustom,children) => {
 
@@ -53,7 +53,18 @@ const FlyingMenu = () => {
         setIsOpen(false);
     });
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    }
+
     return (
+        <div>
         <div className="relative flex flex-col">
             <button onClick={() => setIsOpen(!isOpen)} className="self-end">
                 <EllipsisHorizontalIcon className="w-4 w-4"/>
@@ -65,7 +76,7 @@ const FlyingMenu = () => {
                 "
                 ref={refMenu}
                 >
-                    <button className="w-max p-1">
+                    <button className="w-max p-1" onClick={openModal}>
                         <HeartIcon className="h-6 w-6 transition duration-200 hover:fill-invalid"/>
                     </button>
                     <button className="w-max p-1">
@@ -73,6 +84,8 @@ const FlyingMenu = () => {
                     </button>
                 </div>
             )}
+        </div>
+        <SaveModal isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} />
         </div>
     )
 }

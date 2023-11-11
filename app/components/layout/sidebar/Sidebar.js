@@ -9,6 +9,8 @@ import { LogoWide} from "@/public/image/LogoWide";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { useEffect,useState } from "react";
 
+import VipModal from "../../../users/modal/vip/page"
+
 const Sidebar = ({isOpen,reference,closeSidebar}) => {
     
     const routes = useRoutes();
@@ -24,7 +26,18 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
         getUserData();
     },[]);
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    }
+
     return (
+        <div>
         <div
         className={classNames({
             "flex flex-col justify-between": true, // layout
@@ -85,7 +98,7 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                         text-white
                         rounded 
                         bg-invalid
-                    "> 
+                    " onClick={openModal}> 
                         Seja vip
                     </button>)}
                     <div className="relative mt-2 flex flex-row justify-evenly mt-8">
@@ -124,6 +137,8 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                     </div>
                 </div>
             </nav>
+        </div>
+        <VipModal isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} />
         </div>
     );
 };
