@@ -59,7 +59,8 @@ export const AuthForm = ({tooglePage}) => {
             redirect: false,
         }).then((callback) => {
             if (callback.error) {
-                toast.error("Erro ao realizar login: " + callback.error);
+                toast.error("Erro ao realizar login: Nome de usuário ou senha errada")
+                console.log("Erro ao realizar login: " + callback.error);
             }
             if (callback.ok && !callback.error) {
                 toast.success("Usuario logado com sucesso!");
@@ -76,17 +77,17 @@ export const AuthForm = ({tooglePage}) => {
                     <img className="w-[650px] h-[892px] left-0 top-0 absolute rounded-tl-[15px] rounded-bl-[15px]" src='/image/Rectangle3.png' />
                 </div>
                 <div className="w-[512px] h-[780px] left-[793px] top-[119px] absolute">
-                    {/* senha */}
-                    <div className="w-[512px] h-[72px] left-0 top-[329px] absolute">
-                        <input type="password" onChange={(event) => { setPassword(event.target.value) }} required
-                            className="w-[501px] left-[11px] top-[27px] absolute text-zinc-800 text-3xl font-bold font-['Roboto'] border-b-2 border-zinc-800 outline-none"
-                            placeholder="Senha" />
-                    </div>
                     {/* usuário */}
                     <div className="w-[512px] h-[72px] left-0 top-[217px] absolute">
                         <input type="text" onChange={(event) => { setUsername(event.target.value) }} required
                             className="w-[501px] left-[11px] top-[27px] absolute text-zinc-800 text-3xl font-bold font-['Roboto'] border-b-2 border-zinc-800 outline-none"
                             placeholder="Usuário" />
+                    </div>
+                    {/* senha */}
+                    <div className="w-[512px] h-[72px] left-0 top-[329px] absolute">
+                        <input type="password" onChange={(event) => { setPassword(event.target.value) }} required
+                            className="w-[501px] left-[11px] top-[27px] absolute text-zinc-800 text-3xl font-bold font-['Roboto'] border-b-2 border-zinc-800 outline-none"
+                            placeholder="Senha" />
                     </div>
                     <div className="w-[258px] h-[63px] left-[127px] top-[453px] absolute">
                         <div className="w-[258px] h-[63px] left-0 top-0 absolute bg-emerald-500 rounded-lg shadow border border-red-400 border-opacity-10" />

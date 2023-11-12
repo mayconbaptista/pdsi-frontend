@@ -3,16 +3,23 @@ import classNames from "classnames";
 import SidebarItem from "./SidebarItem";
 import { useSession,getSession} from "next-auth/react";
 import { userSession } from "@/app/api/auth/customSession";
-import {useRoutes,useChats} from "./sidebarItens";
+import {useRoutes,useChats,getChats} from "./sidebarItens";
 
 import { LogoWide} from "@/public/image/LogoWide";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { useEffect,useState } from "react";
 
+import VipModal from "../../../users/modal/vip/page"
+import { usePathname } from "next/navigation";
+
 const Sidebar = ({isOpen,reference,closeSidebar}) => {
+
+    const pathname = usePathname();
     
     const routes = useRoutes();
-    const chats = useChats();
+    // const chats = useChats();
+
+    const [chats,setChats] = useState([]);
 
     const [UserData,setUserData] = useState({});
 
@@ -20,11 +27,31 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
         setUserData(await userSession());
     }
 
+    const getRecentsChats = async (pathname) => {
+        console.log("Atualizando side")
+        setChats(await getChats(pathname));
+    }
+
+    useEffect( () => {
+        getRecentsChats(pathname);
+    },[pathname])
+
     useEffect( () => {
         getUserData();
     },[]);
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    }
+
     return (
+        <div>
         <div
         className={classNames({
             "flex flex-col justify-between": true, // layout
@@ -50,14 +77,15 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                 <SidebarItem
                     item={{
                         label: "Novo conselho",
-                        href: "",
+                        href: "/users/chat/new",
                         icon: <PlusCircleIcon className="w-6 h-6" />,
-                        active: false
+                        active: pathname == "/users/chat/new",
+                        title: "Novo Conselho"
                     }}
                     onClick={() => {}}
                 />
                 <div className="py-2 flex flex-col gap-2 h-[300px] overflow-y-auto border-b border-pink-100 overscroll-contain scroll-custom">
-                    {chats.map( (item,index) => { return (
+                    { chats.length ? chats.map( (item,index) => { return (
                         <SidebarItem
                             key={index}
                             index={index}
@@ -65,7 +93,11 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                             onClick={closeSidebar}
                             typeUser={UserData.plus}
                         />
-                    );})}
+                    )}) : (
+                        <span className="py-1 text-sm mx-2 mt-2 text-text text-center">
+                            Nenhum conselho encontrado
+                        </span>
+                    )}
                 </div>
                 <div className="my-4 py-2 flex flex-col gap-2 border-b border-pink-100">
                     {routes.map( (item,index) => { return (
@@ -85,7 +117,7 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                         text-white
                         rounded 
                         bg-invalid
-                    "> 
+                    " onClick={openModal}> 
                         Seja vip
                     </button>)}
                     <div className="relative mt-2 flex flex-row justify-evenly mt-8">
@@ -124,6 +156,8 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                     </div>
                 </div>
             </nav>
+        </div>
+        <VipModal isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} />
         </div>
     );
 };

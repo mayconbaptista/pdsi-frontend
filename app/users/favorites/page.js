@@ -3,28 +3,73 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames";
 import { HeartIcon,ShareIcon,FunnelIcon} from "@heroicons/react/24/outline";
-import { Modal,ModalContent,ModalBody,ModalHeader } from "@nextui-org/react";
+import RecipesModal from "../modal/recipes/page";
+import FilterModal from "../modal/filter/page";
+import api from "@/app/api/api";
+import { userSession } from "@/app/api/auth/customSession";
 
 const Favorites = () => {
 
     const [favorites,setFavorites] = useState([]);
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    }
+
     useEffect( () => {
-        setFavorites([
-            <FavoriteField key={1} message={"Texto favorito 1"} categorie={'Receita'}/>,
-            <FavoriteField key={2} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
-            <FavoriteField key={3} message={"Texto favorito 1"} categorie={'Outro'}/>,
-            <FavoriteField key={4} message={"Texto favorito 1"} categorie={'Receita'}/>,
-            <FavoriteField key={5} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
-            <FavoriteField key={6} message={"Texto favorito 1"} categorie={'Outro'}/>,
-            <FavoriteField key={7} message={"Texto favorito 1"} categorie={'Receita'}/>,
-            <FavoriteField key={8} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
-            <FavoriteField key={9} message={"Texto favorito 1"} categorie={'Outro'}/>,
-            <FavoriteField key={10} message={"Texto favorito 1"} categorie={'Receita'}/>,
-        ])
+
+        const getFavourites = async () => {
+
+            try {
+                
+                const session = await userSession();
+                const username = session.username;
+                
+                const responseToken = await api.post('/v1/sso/token',{
+                    username: 'admin',
+                    password: 'admin' 
+                });
+    
+                const response = await api.get(`/v1/question/${username}/favorites`,
+                {
+                    headers:{
+                        Authorization: "Bearer "+ responseToken.data.accessToken
+                    }
+                    
+                });
+                
+                const favorites = response.data;
+                
+                setFavorites( favorites.map( item => 
+                    <FavoriteField 
+                        id= {item.questionId} 
+                        key={item.questionId} 
+                        message={item.question} 
+                        categorie={NormalizeTopic(item.topic)}
+                        data={{
+                            message: item.question,
+                            answer: item.answer,
+                        }}
+                    />
+                ));
+                
+            } catch (err) {
+                console.log(err)
+            }
+        }
+
+        getFavourites();
+        
     },[]);
 
     return (
+        <div>
         <div
             className="h-screen flex flex-col w-full"
         >
@@ -51,7 +96,7 @@ const Favorites = () => {
                     shadow-md
                     duration-200
                     hover:bg-gray-200
-                ">
+                " onClick={openModal}>
                     <FunnelIcon className="h-6 w-6"/>
                 </button>
             </div>
@@ -63,10 +108,21 @@ const Favorites = () => {
                 )}
             </div>
         </div>
+        <FilterModal isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} />
+        </div>
     );
 }
 
-const FavoriteField = ({message,categorie}) => {
+const NormalizeTopic = (topic) => {
+    const categories = {
+        "GENERAL" : 'Outro',
+        "RECIPE": "Receita",
+        "CURIOSITY": "Curiosidade"
+    }
+
+    return categories[topic] ? categories[topic] : "Outro";
+}
+const FavoriteField = ({message,categorie,id,data}) => {
 
     function handleCategorie(categorie) {
         const categories = {
@@ -80,18 +136,25 @@ const FavoriteField = ({message,categorie}) => {
 
     const type = handleCategorie(categorie);
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const openModal = () => {
+        setModalIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    }
+
     return (
+        <>
         <div className="
             relative
             grid grid-cols-12
-            w-11/12 py-3 px-5  my-3
+            w-11/12 py-3 px-5 my-3
             border border-gray-200 rounded-lg
             bg-white shadow-sm    
-            cursor-pointer
-        "
-        onClick={() => {
-            console.log("Abrir modal");
-        }}
+            cursor-pointer"
         >
             <div className={`
                 absolute
@@ -99,11 +162,11 @@ const FavoriteField = ({message,categorie}) => {
                 border-2 rounded-l-lg
                 ${type}
                 text-center  
-            `}>
+            `} onClick={openModal}>
                 <p className="px-1 text-white font-bold">{categorie}</p>
             </div>
             <div className="col-span-2"/>
-            <div className="col-span-8 mx-5 truncate">
+            <div className="col-span-8 mx-5 truncate" onClick={openModal}>
                 Favorito: {message}
             </div>
             <div className="col-span-2 grid grid-cols-2">
@@ -127,6 +190,8 @@ const FavoriteField = ({message,categorie}) => {
                 </button>
             </div>
         </div>
+        <RecipesModal id={id} data={data} categorie={categorie} isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} />
+        </>
     )
 }
 

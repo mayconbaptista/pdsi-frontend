@@ -2,47 +2,96 @@
 
 import { UserMessage,BotMessage } from "@/app/components/messages/chatMessage"
 import { MessageInput } from "@/app/components/inputs/messageInput"
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { isUserBase } from "@/app/api/auth/customSession";
+import api from "@/app/api/api";
+import { userSession } from "@/app/api/auth/customSession";
 
 export default function Chat({ params }) {
 
   const scrollDiv = useRef();
-  const router = useRouter();  
+  const router = useRouter();
 
   // Gambiarra 2000
   const [messages,SetMessages] = useState([]);
+  const [showinput,setShowInput] = useState(true);
 
-  let lId = messages.length;
+  const lId = useRef(0);
 
-  // Verificar como fazer da maneira correta
-  // useEffect( () => {
-  //   if(params.chatId != 'a' && params.chatId != 'b'){
-  //     router.replace("/users");
-  //   }
-  // },[router,params]);
+  const onPageLoad = useCallback( async () => {
+    try{
+      // Proteger urls Usuários gratis
+      const userType = await isUserBase();
+      if(userType && params.chatId != 'new') {
+        router.replace("/users");
+      }
+
+      // Buscar mensagens
+      if(params.chatId == 'new') {
+        return;
+      }
+
+      // Renovar token admin
+      const session = await userSession();
+      const username = session.username;
+
+      const responseToken = await api.post('/v1/sso/token',{      
+        username: 'admin',
+        password: 'admin'   
+      });
+      
+      const response = await api.get(`v1/question/${username}/latest`,{
+        headers:{
+          Authorization: "Bearer "+ responseToken.data.accessToken
+        }   
+      });
+
+      const chat = response.data.find( item => item.questionId == params.chatId);
+
+      console.log("page Chats",chat);
+      SetMessages(messages => [...messages,UserMessage(chat.question,lId.current),BotMessage(chat.answer,chat.questionId)]);
+      lId.current++;
+
+      setShowInput(false);
+
+    }catch (err) {
+      console.log("Error in onPageLoad:users/chat/page",err);
+    }
+  },[router,params]);
+
+  useEffect( () => {
+    onPageLoad();
+  },[onPageLoad]);
 
   useEffect( () => {
     scrollDiv.current.scrollIntoView({ behavior: 'smooth' });
   },[messages]);
-
-  const updateMessages = (newMsg) => {
-    lId++
-    SetMessages([...messages,UserMessage(newMsg,lId),BotMessage(`Minha Resposta: ${newMsg}`,lId+1)]);
-    lId++
+  
+  const addUserMessage = (message) => {
+    lId.current++;
+    SetMessages(messages => [...messages,UserMessage(message,lId.current)]);
+  }
+  
+  const addBotMessage = (message,id) => {
+    lId.current++;
+    SetMessages(messages => [...messages,BotMessage("Minha resposta: "+ message,id)]);
+    setShowInput(false); // Melhorar lógica depois
   }
 
-    return (
-      <div className="flex flex-col w-full">
-        <div className="min-h-chat">
-          {messages.length ? (
-            messages.map( message => (message))
-          ) : (
-            <div className="min-h-chat flex justify-center items-center font-bold text-text">Envie uma mensagem para começar</div>
-          )}
-        </div>
-        <MessageInput onSend={updateMessages}/>
-        <div ref={scrollDiv}/>
+  return (
+    <div className="flex flex-col w-full">
+      <div className="min-h-chat">
+        {messages.length ? (
+          messages.map( message => (message))
+        ) : (
+          <div className="min-h-chat flex justify-center items-center font-bold text-text">Envie uma mensagem para começar</div>
+        )}
       </div>
-    );
-  }
+      {showinput && (
+        <MessageInput onUserSend={addUserMessage} onResponse={addBotMessage} newChat={params.chatId == 'new'}/>
+      )}
+      <div ref={scrollDiv}/>
+    </div>
+  );
+}

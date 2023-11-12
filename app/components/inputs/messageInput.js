@@ -1,24 +1,59 @@
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import classNames from "classnames";
 import { useState } from "react";
+import api from "@/app/api/api";
+import axios from "axios";
+import { headers } from "@/next.config";
+import { signIn } from "next-auth/react";
+import { userSession } from "@/app/api/auth/customSession";
 
-export const MessageInput = ({onSend}) => {
+
+export const MessageInput = ({onUserSend,onResponse,newChat}) => {
 
     const [userMessage,setUserMessage] = useState();
     const [creativeChefMode,setCreativeChefMode] = useState(false);
 
     // ON FORM SUBMIT
     async function sendMessage(e) {
+
         e.preventDefault();
-        
+
+        onUserSend(userMessage);
+        setUserMessage(""); // Limpar input
+
+
         try {
-            console.log("Mensagem enviada");
 
-            setUserMessage("");
-            onSend(userMessage);
+            const session = await userSession();
+            
+            // Renovar token usuario
+            
+            const responseToken = await api.post('/v1/sso/token',{
+                username: session.username,
+                password: session.password
+            });
 
+
+            const response = await api.post('v1/question',{
+                
+                message: userMessage,
+                randomness: creativeChefMode ? 0.9 : 0.5
+                
+            },{
+                headers:{
+                    Authorization: "Bearer "+ responseToken.data.accessToken
+                }
+                
+            }
+            )
+            console.log(response.data);
+            onResponse(response.data.answer,response.data.questionId);
+        
         } catch (err) {
             console.error(`Error in sendMessage: ${err}`);
+        } finally {
+            // Recolocar no Try
+            console.log("Mensagem enviada");
         }
         
     }

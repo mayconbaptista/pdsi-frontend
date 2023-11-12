@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     ChatBubbleLeftIcon,
     StarIcon,
@@ -9,6 +9,8 @@ import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 
 import { signOut } from "next-auth/react";
+import api from "@/app/api/api";
+import { userSession } from "@/app/api/auth/customSession";
 
 function Chat (name,id,pathname){  
 
@@ -17,19 +19,73 @@ function Chat (name,id,pathname){
         label: name,
         href: `/users/chat/${id}`,
         icon: <ChatBubbleLeftIcon className="w-6 h-6" />,
-        active: isChatActive
+        active: isChatActive,
+        title: `Meu conselho de nome ${id}`,
     };
 };
 
-export const useChats = () => {
-    const pathname = usePathname();
-    var letters = ['a','b','c','d','e','f','g','h'];
+const getRecentsChats = async () => {
 
-    var chats = []
-        chats = letters.map(letter => (
-            Chat(`Conselho ${letter.toUpperCase()}`,letter,pathname)
-        )
-    );
+    try {
+
+        const session = await userSession();
+        const username = session.username;
+
+        // Renovar token admin
+        const responseToken = await api.post('/v1/sso/token',{      
+            username: 'admin',
+            password: 'admin'   
+        });
+        
+        const response = await api.get(`v1/question/${username}/latest`,{
+            headers:{
+                Authorization: "Bearer "+ responseToken.data.accessToken
+            }   
+        });
+
+        return response.data;
+
+    } catch (err) {
+
+        console.error(err);
+        if(err.response.status == 500) {
+            console.error("ERROR::500: Não foi encontrado nenhum chat")
+        }
+        return [];
+    }
+}
+
+export const getChats = async (pathname) => {
+    const questions = await getRecentsChats()
+    let aux = []
+    aux = questions.map( question => (
+        Chat(`${question.question.substring(0,20)}`,question.questionId,pathname)
+    ));
+    return aux;
+}
+
+export const useChats = () => {
+
+    const pathname = usePathname();
+
+    const [questions,setQuestions] = useState([]);
+    const [chats,setChats] = useState([]);
+
+    useEffect(()=>{
+        const getChats = async() => {
+            const questions = await getRecentsChats()
+            setQuestions(questions);
+        }
+        getChats();
+    },[pathname]);
+
+    useEffect( () => {
+        let aux = []
+        aux = questions.map( question => (
+            Chat(`${question.question.substring(0,20)}`,question.questionId,pathname)
+        ));
+        setChats(aux);
+    } ,[questions,pathname])
 
     return chats;
 };
@@ -40,14 +96,14 @@ export const useRoutes = () => {
 
     const routes = useMemo( () => [
         {
-          label: "Favoritos",
-          href: "/users/favorites",
-          icon: <StarIcon className="w-6 h-6" />,
-          active: pathname == '/users/favorites'
+            label: "Favoritos",
+            href: "/users/favorites",
+            icon: <StarIcon className="w-6 h-6" />,
+            active: pathname == '/users/favorites',
         },
         {
             label: "Logout",
-            href: "#",
+            href: "/",
             icon: <ArrowLeftOnRectangleIcon className="w-6 h-6" />,
             onClick: () => signOut(),
         },

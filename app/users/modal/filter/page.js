@@ -1,37 +1,19 @@
 'use client';
 
-import React, { useState } from "react";
 import Modal from "react-modal";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
-function FilterModal() {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-
-    const openModal = () => {
-        setModalIsOpen(true);
-    }
-
-    const closeModal = () => {
-        setModalIsOpen(false);
-    }
+function FilterModal(props) {
 
     const handleSubmit = async e => {
     }
 
     return (
         <div>
-            <div className='w-1/2 h-screen mx-auto flex items-center'>
-                <button
-                    className='btn btn-warning bg-red-500 text-white font-bold py-2 px-4 rounded'
-                    onClick={() => openModal()}
-                >
-                    {" "}
-                    Filter Modal
-                </button>
-            </div>
 
             <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
+                isOpen={props.isOpen}
+                onRequestClose={props.onRequestClose}
                 contentLabel='Filter Modal'
                 style={{
                     overlay: {
@@ -47,7 +29,7 @@ function FilterModal() {
                     },
                 }}
             >
-                <button className="close-button absolute top-0 right-0 m-4" onClick={() => closeModal()}>X</button>
+                <button className="close-button absolute top-0 right-0 m-4" onClick={props.closeModal}><XMarkIcon className="h-8 w-8" /></button>
                 <form onSubmit={handleSubmit}>
                     <div className="text-center">
                         <div className="m-4 inline-block text-2xl font-bold">Filtro</div>

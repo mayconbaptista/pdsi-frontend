@@ -1,34 +1,16 @@
 'use client';
 
-import React, { useState } from "react";
 import Modal from "react-modal";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
-function VipModal() {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-
-    const openModal = () => {
-        setModalIsOpen(true);
-    }
-
-    const closeModal = () => {
-        setModalIsOpen(false);
-    }
+function VipModal(props) {   
 
     return (
         <div>
-            <div className='w-1/2 h-screen mx-auto flex items-center'>
-                <button
-                    className='btn btn-warning bg-red-500 text-white font-bold py-2 px-4 rounded'
-                    onClick={() => openModal()}
-                >
-                    {" "}
-                    Vip Modal
-                </button>
-            </div>
 
             <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
+                isOpen={props.isOpen}
+                onRequestClose={props.onRequestClose}
                 contentLabel='Vip Modal'
                 style={{
                     overlay: {
@@ -46,7 +28,7 @@ function VipModal() {
                     },
                 }}
             >
-                <button className="close-button absolute top-0 right-0 m-4" onClick={() => closeModal()}>X</button>
+                <button className="close-button absolute top-0 right-0 m-4" onClick={props.closeModal}><XMarkIcon className="h-8 w-8" /></button>
                 <img className="w-[75%] h-[75%] mx-auto" src="/image/promocionalChef.png" />
                 <div className="text-center">
                     <p className="mb-4 inline-block">Seja VIP agora mesmo e tenha acesso a todos esses benefícios</p>

@@ -1,34 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sistema de Auxílio Culinário com LLM (Large Language Models)
 
-## Getting Started
+## Motivação
+  Desenvolvimento de um Sistema para a disciplina **Projeto e desenvolvimento de sistemas de informção**, que busca fornecer uma experiência sobre o desenvolvimento de sistemas de informação - da coleta de requisitos a criação de um protótipo.
 
-First, run the development server:
+## Objetivo
+  Desenvolver um Sistema para auxiliar cozinheiros amadores e profissionais, fornecendo receitas e dicas culinárias por meio de uma aplicação de LLM (Large Language Models).
 
+## Tecnologias 
+  <table>
+  <tr>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" height="40" alt-"HTML5"/><br>
+      <sub><b>HTML5</b></sub>
+    </td>
+   <td align="center">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="40" height="40" alt-"Js"/><br>
+    <sub><b>JavaScript</b></sub>
+  </td>
+   <td align="center">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg" width="40" height="40" alt-"NextJs"/><br>
+    <sub><b>NextJs</b></sub>
+  </td>
+   <td align="center">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" width="40" height="40" alt-"tailwindcss"/><br>
+    <sub><b>TailwindCss</b></sub>
+  </td>
+  </tr>
+</table>
+
+## Funcionalidades Principais
+1. Respostas sobre Tópicos Culinários, por meio do ChatBot
+2. Possibilidade de Salvar mensagens.
+
+
+
+# Como Utilizar
+### 1. Clone este repositório para o seu ambiente local.
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+cd "diretorio de sua preferencia"
+git clone https://github.com/Felipe-Harrison/pdsi-frontend.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Instale as dependências necessárias.
+```bash
+cd "pdsi-frontend"
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 3. Execute a aplicação.
+```bash
+npm run dev
+```
+### 4. Acesse a aplicação através do seu navegador em [http://localhost:3000](http://localhost:3000).
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Bom apetite! 🍽️
+Apreciamos o seu interesse no nosso Sistema de Auxílio Culinário. Esperamos que ele torne suas experiências na cozinha mais agradáveis e inspiradoras. 
