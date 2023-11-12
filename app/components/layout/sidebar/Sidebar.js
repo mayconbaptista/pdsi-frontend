@@ -3,24 +3,38 @@ import classNames from "classnames";
 import SidebarItem from "./SidebarItem";
 import { useSession,getSession} from "next-auth/react";
 import { userSession } from "@/app/api/auth/customSession";
-import {useRoutes,useChats} from "./sidebarItens";
+import {useRoutes,useChats,getChats} from "./sidebarItens";
 
 import { LogoWide} from "@/public/image/LogoWide";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { useEffect,useState } from "react";
 
 import VipModal from "../../../users/modal/vip/page"
+import { usePathname } from "next/navigation";
 
 const Sidebar = ({isOpen,reference,closeSidebar}) => {
+
+    const pathname = usePathname();
     
     const routes = useRoutes();
-    const chats = useChats();
+    // const chats = useChats();
+
+    const [chats,setChats] = useState([]);
 
     const [UserData,setUserData] = useState({});
 
     const getUserData = async () => {
         setUserData(await userSession());
     }
+
+    const getRecentsChats = async (pathname) => {
+        console.log("Atualizando side")
+        setChats(await getChats(pathname));
+    }
+
+    useEffect( () => {
+        getRecentsChats(pathname);
+    },[pathname])
 
     useEffect( () => {
         getUserData();

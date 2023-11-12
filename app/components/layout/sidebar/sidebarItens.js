@@ -24,42 +24,60 @@ function Chat (name,id,pathname){
 };
 
 const getRecentsChats = async () => {
-    const username = "test"
+    const username = "test2"
 
     try {
-        const response = await api.get(`v1/question/${username}/latest`);
+        // Renovar token admin
+        const responseToken = await api.post('/v1/sso/token',{      
+            username: 'admin',
+            password: 'admin'   
+        });
+        
+        const response = await api.get(`v1/question/${username}/latest`,{
+            headers:{
+                Authorization: "Bearer "+ responseToken.data.accessToken
+            }   
+        });
 
-        console.log(response);
+        return response.data;
 
     } catch (err) {
         console.log("error in get chats")
-    } finally {
-        return ['a','b','c','d','e','f','g','h'];
+        return [];
     }
+}
+
+export const getChats = async (pathname) => {
+    const questions = await getRecentsChats()
+    let aux = []
+    aux = questions.map( question => (
+        Chat(`${question.question.substring(0,20)}`,question.questionId,pathname)
+    ));
+    return aux;
 }
 
 export const useChats = () => {
 
     const pathname = usePathname();
 
-    const [letters,setLetters] = useState([]);
+    const [questions,setQuestions] = useState([]);
     const [chats,setChats] = useState([]);
 
     useEffect(()=>{
         const getChats = async() => {
-            const chats = await getRecentsChats()
-            setLetters(chats);
+            const questions = await getRecentsChats()
+            setQuestions(questions);
         }
         getChats();
-    },[]);
+    },[pathname]);
 
     useEffect( () => {
         let aux = []
-        aux = letters.map(letter => (
-            Chat(`Conselho ${letter.toUpperCase()}`,letter,pathname)
+        aux = questions.map( question => (
+            Chat(`${question.question.substring(0,20)}`,question.questionId,pathname)
         ));
         setChats(aux);
-    } ,[letters,pathname])
+    } ,[questions,pathname])
 
     return chats;
 };

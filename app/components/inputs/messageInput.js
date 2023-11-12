@@ -19,15 +19,17 @@ export const MessageInput = ({onUserSend,onResponse,newChat}) => {
         onUserSend(userMessage);
         setUserMessage(""); // Limpar input
 
+
         try {
             
             // Renovar token usuario
             const responseToken = await api.post('/v1/sso/token',{
                 
-                username: 'test',
+                username: 'test2',
                 password: 'Test@123'
                 
             });
+
 
             const response = await api.post('v1/question',{
                 
@@ -42,23 +44,7 @@ export const MessageInput = ({onUserSend,onResponse,newChat}) => {
             }
             )
             console.log(response.data);
-            onResponse(response.data.answer);
-                
-            // const options2 = {
-            //     method: 'POST',
-            //     url: 'http://localhost:8081/v1/question',
-            //     headers: {
-            //       'Content-Type': 'application/json',
-            //       Authorization: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJaXzg2UlhKV0ptMmlkVW5rMUg4WkVXQU1zNm4tZ3c5ZTFoVzk2X25OOVFrIn0.eyJleHAiOjE2OTk3MzAyMTIsImlhdCI6MTY5OTcyOTkxMiwianRpIjoiZmEyZDhiODQtYWRiNy00MjM2LTkxNWEtZDM5MmJlMzA5M2E4IiwiaXNzIjoiaHR0cDovL2tleWNsb2FrOjgwODAvcmVhbG1zL2N1bGluYXJ5LWFuc3dlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIzMGJmNmU0Zi1hMjdkLTRlZjUtODZlYS04YzYyMjQ2Y2I0OTciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJiYWNrZW5kLXNlcnZpY2UiLCJzZXNzaW9uX3N0YXRlIjoiYzU3MzQ5NTgtYjgyNy00ZTViLWIxYzQtZTU0ZDI1NGFlNzBjIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwiZnJlZS1xdWVzdGlvbiIsImRlZmF1bHQtcm9sZXMtcXVhcmt1cyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYzU3MzQ5NTgtYjgyNy00ZTViLWIxYzQtZTU0ZDI1NGFlNzBjIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiVGVzdGUgUXVhbHF1ZXIiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ0ZXN0IiwiZ2l2ZW5fbmFtZSI6IlRlc3RlIFF1YWxxdWVyIiwiZW1haWwiOiJ0ZXN0QHBkc2kuY29tIn0.mmEcqN60gP38qz9qJkKqYTWOPIOdgEgci5IRa3yyLProfK439QlbhOM08AakQbtn3hPG2qODR2EioNB5702aRmX6o6pqiFsJN2LUUCpE-Bf0B3l70J7OJwFK2aysNa6J5H_DwL-zzeq6A2z5gWVa0rQXGB7wNkfyBxOGAd_qXELFhnEpr_bYn3JzvCoOjQYuXwL91AmUqUH7aQVGJKoQyVUsFBwwgB0YcZubDSs09jrI4mQjO8DZ395xytdzUS-BG6pPOzCMpF6Rejb2-oPhfV6BqvLP6MdA_oW81kmFDXG2LqOzXQFZK4vTIJbrMbWBBrtiPLtOIMB7y2x3wE3rRQ'
-            //     },
-                
-            // };
-            // axios.request(options2).then(function (response) {
-            //     console.log(response.data);
-            //     onResponse(response.data.answer);
-            // }).catch(function (error) {
-            //     console.error(error);
-            // });
+            onResponse(response.data.answer,response.data.questionId);
         
         } catch (err) {
             console.error(`Error in sendMessage: ${err}`);

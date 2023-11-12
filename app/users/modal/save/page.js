@@ -15,17 +15,31 @@ function SaveModal(props) {
 
         e.preventDefault();
 
-        const username = "test";
-
+        
         const data = {
-            "questionId": props.id ? props.id : "123",
+            "questionId": props.messageId ? props.messageId : "123",
             "topic": categorie.toUpperCase(),
             "tittle": title
         }
         
+        const username = "test2";
+
         try {
-            const response = api.put(`/v1/question/${username}/favorites`,{
-                data: data,
+
+            console.log("Data",data);
+
+            // Renovar token admin
+            const responseToken = await api.post('/v1/sso/token',{      
+                username: 'admin',
+                password: 'admin'   
+            });
+            
+            const response = await api.put(`/v1/question/${username}/favorites`,
+                data,
+            {
+                headers:{
+                    Authorization: "Bearer "+ responseToken.data.accessToken
+                }   
             });
 
             console.log(response);
@@ -85,9 +99,9 @@ function SaveModal(props) {
                             value={categorie}
                         >
                             <option></option>
-                            <option value="receita">Receita</option>
-                            <option value="curiosidade">Curiosidade</option>
-                            <option value="geral">Geral</option>
+                            <option value="RECIPE">Receita</option>
+                            <option value="CURIOSITY">Curiosidade</option>
+                            <option value="GENERAL">Geral</option>
                         </select>
                     </div>
                     <div class="text-center">

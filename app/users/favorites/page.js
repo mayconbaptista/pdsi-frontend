@@ -25,24 +25,36 @@ const Favorites = () => {
 
         const getFavourites = async () => {
 
-            const username = "test";
+            const username = "test2";
             try {
-                const response = api.get(`/v1/question/${username}/favorites`);
 
-                console.log(response);
+                const responseToken = await api.post('/v1/sso/token',{
+                    username: 'admin',
+                    password: 'admin' 
+                });
+    
+                const response = await api.get(`/v1/question/${username}/favorites`,
+                {
+                    headers:{
+                        Authorization: "Bearer "+ responseToken.data.accessToken
+                    }
+                    
+                });
                 
-                setFavorites([
-                    <FavoriteField key={1} message={"Texto favorito 1"} categorie={'Receita'}/>,
-                    <FavoriteField key={2} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
-                    <FavoriteField key={3} message={"Texto favorito 1"} categorie={'Outro'}/>,
-                    <FavoriteField key={4} message={"Texto favorito 1"} categorie={'Receita'}/>,
-                    <FavoriteField key={5} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
-                    <FavoriteField key={6} message={"Texto favorito 1"} categorie={'Outro'}/>,
-                    <FavoriteField key={7} message={"Texto favorito 1"} categorie={'Receita'}/>,
-                    <FavoriteField key={8} message={"Texto favorito 1"} categorie={'Curiosidade'}/>,
-                    <FavoriteField key={9} message={"Texto favorito 1"} categorie={'Outro'}/>,
-                    <FavoriteField key={10} message={"Texto favorito 1"} categorie={'Receita'}/>,
-                ]);
+                const favorites = response.data;
+                
+                setFavorites( favorites.map( item => 
+                    <FavoriteField 
+                        id= {item.questionId} 
+                        key={item.questionId} 
+                        message={item.question} 
+                        categorie={NormalizeTopic(item.topic)}
+                        data={{
+                            message: item.question,
+                            answer: item.answer,
+                        }}
+                    />
+                ));
                 
             } catch (err) {
                 console.log(err)
@@ -98,7 +110,16 @@ const Favorites = () => {
     );
 }
 
-const FavoriteField = ({message,categorie}) => {
+const NormalizeTopic = (topic) => {
+    const categories = {
+        "GENERAL" : 'Outro',
+        "RECIPE": "Receita",
+        "CURIOSITY": "Curiosidade"
+    }
+
+    return categories[topic] ? categories[topic] : "Outro";
+}
+const FavoriteField = ({message,categorie,id,data}) => {
 
     function handleCategorie(categorie) {
         const categories = {
@@ -123,14 +144,15 @@ const FavoriteField = ({message,categorie}) => {
     }
 
     return (
-        <div>
+        <>
         <div className="
             relative
             grid grid-cols-12
-            w-11/12 py-3 px-5  my-3
+            w-11/12 py-3 px-5 my-3
             border border-gray-200 rounded-lg
             bg-white shadow-sm    
-            cursor-pointer">
+            cursor-pointer"
+        >
             <div className={`
                 absolute
                 h-full w-1/6 px-2 py-4
@@ -165,8 +187,8 @@ const FavoriteField = ({message,categorie}) => {
                 </button>
             </div>
         </div>
-        <RecipesModal isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} />
-        </div>
+        <RecipesModal id={id} data={data} categorie={categorie} isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} />
+        </>
     )
 }
 

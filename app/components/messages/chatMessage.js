@@ -40,11 +40,11 @@ export const BotMessage = (msg, id) => {
         id,
         msg,
         "rounded-borderMSg rounded-bl-none self-start",
-        <FlyingMenu/>
+        <FlyingMenu id={id}/>
     )
 };
 
-const FlyingMenu = () => {
+const FlyingMenu = ({id}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const refMenu = useRef(null);
@@ -85,7 +85,7 @@ const FlyingMenu = () => {
                 </div>
             )}
         </div>
-        <SaveModal isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} />
+        <SaveModal isOpen={modalIsOpen} onRequestClose={closeModal} closeModal={closeModal} messageId={id}/>
         </div>
     )
 }
