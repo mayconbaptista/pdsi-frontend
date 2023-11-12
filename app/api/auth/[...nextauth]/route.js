@@ -45,20 +45,20 @@ export const authOptions = {
                 };
 
                 try {
-                    const response = await api.post('/v1/sso/token',{
-                        data:data,
-                    });
+                    const response = await api.post('/v1/sso/token',
+                        data
+                    );
                     const decoded = jwt.decode(response.data.accessToken);
                     console.log('Decoded JWT:', decoded);
 
                     const userData = {
-                        
                         id: decoded.sid,
                         username: credentials.email,
-                        name: decoded.name,
-                        email: decoded.name,
+                        password: credentials.password,
+                        name: decoded.preferred_username,
+                        email: decoded.preferred_username,
                         plusData: "23/10/2023",
-                        nameSymbol: getNameAbreviation(decoded.name),
+                        nameSymbol: getNameAbreviation(decoded.preferred_username),
                         plus: getTypeUser(decoded.realm_access.roles), 
                     }
 
@@ -70,7 +70,7 @@ export const authOptions = {
                     if(err.response) {
                         console.log(err.response.data);
                     }
-                    
+                    return;
                     const users = [
                         {
                             id: 1,
@@ -85,11 +85,21 @@ export const authOptions = {
                         {
                             id: 2,
                             username: "test",
-                            password: "test",
+                            password: "test@123",
                             name: "Teste qualquer",
                             email: "teste@example.com",
                             plusData: null,
                             nameSymbol: getNameAbreviation("Teste qualquer"),
+                            plus: false,
+                        },
+                        {
+                            id: 3,
+                            username: "test2",
+                            password: "test@123",
+                            name: "2Teste qualquer",
+                            email: "test2@example.com",
+                            plusData: null,
+                            nameSymbol: getNameAbreviation("2Teste qualquer"),
                             plus: false,
                         }
                     ];
@@ -113,6 +123,8 @@ export const authOptions = {
                 token.plus = user.plus;
                 token.plusData = user.plusData;
                 token.nameSymbol = user.nameSymbol;
+                token.username = user.username;
+                token.password = user.password;
             }
             return token;
         },

@@ -40,8 +40,8 @@ export default function Cadastro({tooglePage}) {
         const formData = new FormData(e.target);
         const formProps = Object.fromEntries(formData);
 
-        const userType = formProps.plano == 'on' ? 'free' : 'member'
-        
+        const userType = formProps.plano;
+
         // Logar como admin e completar o Header
         
         const data = {
@@ -74,16 +74,21 @@ export default function Cadastro({tooglePage}) {
                         id='username'
                         name='username'
                         className="w-[536px] h-[48px] left-0 top-[41px] absolute bg-transparent rounded-md border border-gray-300" 
-                        type="text" 
+                        type="text"
+                        required 
+                        autoFocus
                     />
                     <label for="username" className="left-0 top-0 absolute text-zinc-800 text-3xl font-bold font-['Roboto']">Usuario</label>
                 </div>
                 {/* senha */}
                 <div className="w-[266px] h-[93px] left-0 top-[173px] absolute">
                     <input 
-                    id='psw'
-                    name='psw'
-                    className="w-[266px] h-[48px] left-0 top-[41px] absolute bg-transparent rounded-md border border-gray-300" type="password" />
+                        id='psw'
+                        name='psw'
+                        className="w-[266px] h-[48px] left-0 top-[41px] absolute bg-transparent rounded-md border border-gray-300" 
+                        type="password" 
+                        required
+                    />
                     <label for="psw" className="w-[266px] left-0 top-0 absolute text-zinc-800 text-3xl font-bold font-['Roboto']">Senha</label>
                 </div>
                 {/* confirmar senha */}
@@ -106,11 +111,24 @@ export default function Cadastro({tooglePage}) {
                 <div className="w-[531px] h-[90px] left-[3px] top-[403px] absolute">
                     <label for="plano" className="w-[531px] h-[37.71px] left-0 top-0 absolute text-zinc-800 text-3xl font-bold font-['Roboto']">Plano:</label>
                     <div className="w-[216px] h-[38.57px] left-0 top-[51.43px] absolute">
-                        <input checked type="radio" name="plano" id="gratuito" className="w-[45px] h-[38.57px] left-0 top-0 absolute bg-white bg-opacity-0 rounded-[7px] border border-stone-300" />
+                        <input 
+                            checked 
+                            type="radio" 
+                            name="plano" 
+                            id="gratuito" 
+                            className="w-[45px] h-[38.57px] left-0 top-0 absolute bg-white bg-opacity-0 rounded-[7px] border border-stone-300" 
+                            value={'free'}
+                        />
                         <label htmlFor="gratuito" className="w-[164px] h-[38.57px] left-[52px] top-0 absolute text-zinc-800 text-3xl font-normal font-['Roboto']">Gratuito</label>
                     </div>
                     <div className="w-[216px] h-[38.57px] left-[239px] top-[51.43px] absolute">
-                        <input type="radio" name="plano" id="vip" className="w-[45px] h-[38.57px] left-0 top-0 absolute bg-white bg-opacity-0 rounded-[7px] border border-stone-300" />
+                        <input 
+                            type="radio" 
+                            name="plano" 
+                            id="vip" 
+                            className="w-[45px] h-[38.57px] left-0 top-0 absolute bg-white bg-opacity-0 rounded-[7px] border border-stone-300" 
+                            value={'member'}
+                        />
                         <label htmlFor="vip" className="w-[164px] h-[38.57px] left-[52px] top-0 absolute text-zinc-800 text-3xl font-normal font-['Roboto']">VIP</label>
                     </div>
                 </div>

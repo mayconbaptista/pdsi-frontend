@@ -79,13 +79,13 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                         label: "Novo conselho",
                         href: "/users/chat/new",
                         icon: <PlusCircleIcon className="w-6 h-6" />,
-                        active: false,
+                        active: pathname == "/users/chat/new",
                         title: "Novo Conselho"
                     }}
                     onClick={() => {}}
                 />
                 <div className="py-2 flex flex-col gap-2 h-[300px] overflow-y-auto border-b border-pink-100 overscroll-contain scroll-custom">
-                    {chats.map( (item,index) => { return (
+                    { chats.length ? chats.map( (item,index) => { return (
                         <SidebarItem
                             key={index}
                             index={index}
@@ -93,7 +93,11 @@ const Sidebar = ({isOpen,reference,closeSidebar}) => {
                             onClick={closeSidebar}
                             typeUser={UserData.plus}
                         />
-                    );})}
+                    )}) : (
+                        <span className="py-1 text-sm mx-2 mt-2 text-text text-center">
+                            Nenhum conselho encontrado
+                        </span>
+                    )}
                 </div>
                 <div className="my-4 py-2 flex flex-col gap-2 border-b border-pink-100">
                     {routes.map( (item,index) => { return (

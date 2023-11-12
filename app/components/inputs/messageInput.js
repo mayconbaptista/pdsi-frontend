@@ -5,6 +5,8 @@ import api from "@/app/api/api";
 import axios from "axios";
 import { headers } from "@/next.config";
 import { signIn } from "next-auth/react";
+import { userSession } from "@/app/api/auth/customSession";
+
 
 export const MessageInput = ({onUserSend,onResponse,newChat}) => {
 
@@ -21,13 +23,14 @@ export const MessageInput = ({onUserSend,onResponse,newChat}) => {
 
 
         try {
+
+            const session = await userSession();
             
             // Renovar token usuario
+            
             const responseToken = await api.post('/v1/sso/token',{
-                
-                username: 'test2',
-                password: 'Test@123'
-                
+                username: session.username,
+                password: session.password
             });
 
 

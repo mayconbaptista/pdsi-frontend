@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { isUserBase } from "@/app/api/auth/customSession";
 import api from "@/app/api/api";
+import { userSession } from "@/app/api/auth/customSession";
 
 export default function Chat({ params }) {
 
@@ -14,6 +15,7 @@ export default function Chat({ params }) {
 
   // Gambiarra 2000
   const [messages,SetMessages] = useState([]);
+  const [showinput,setShowInput] = useState(true);
 
   const lId = useRef(0);
 
@@ -31,7 +33,8 @@ export default function Chat({ params }) {
       }
 
       // Renovar token admin
-      const username = 'test2';
+      const session = await userSession();
+      const username = session.username;
 
       const responseToken = await api.post('/v1/sso/token',{      
         username: 'admin',
@@ -49,6 +52,8 @@ export default function Chat({ params }) {
       console.log("page Chats",chat);
       SetMessages(messages => [...messages,UserMessage(chat.question,lId.current),BotMessage(chat.answer,chat.questionId)]);
       lId.current++;
+
+      setShowInput(false);
 
     }catch (err) {
       console.log("Error in onPageLoad:users/chat/page",err);
@@ -71,6 +76,7 @@ export default function Chat({ params }) {
   const addBotMessage = (message,id) => {
     lId.current++;
     SetMessages(messages => [...messages,BotMessage("Minha resposta: "+ message,id)]);
+    setShowInput(false); // Melhorar lógica depois
   }
 
   return (
@@ -82,7 +88,9 @@ export default function Chat({ params }) {
           <div className="min-h-chat flex justify-center items-center font-bold text-text">Envie uma mensagem para começar</div>
         )}
       </div>
-      <MessageInput onUserSend={addUserMessage} onResponse={addBotMessage} newChat={params.chatId == 'new'}/>
+      {showinput && (
+        <MessageInput onUserSend={addUserMessage} onResponse={addBotMessage} newChat={params.chatId == 'new'}/>
+      )}
       <div ref={scrollDiv}/>
     </div>
   );

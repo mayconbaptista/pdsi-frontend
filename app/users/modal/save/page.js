@@ -3,6 +3,7 @@
 import Modal from "react-modal";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import api from "@/app/api/api";
+import { userSession } from "@/app/api/auth/customSession";
 import toast from "react-hot-toast";
 import { useState } from "react";
 
@@ -22,10 +23,11 @@ function SaveModal(props) {
             "tittle": title
         }
         
-        const username = "test2";
-
+        
         try {
-
+            
+            const session = await userSession();
+            const username = session.username;
             console.log("Data",data);
 
             // Renovar token admin

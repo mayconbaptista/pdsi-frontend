@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 
 import { signOut } from "next-auth/react";
 import api from "@/app/api/api";
+import { userSession } from "@/app/api/auth/customSession";
 
 function Chat (name,id,pathname){  
 
@@ -24,9 +25,12 @@ function Chat (name,id,pathname){
 };
 
 const getRecentsChats = async () => {
-    const username = "test2"
 
     try {
+
+        const session = await userSession();
+        const username = session.username;
+
         // Renovar token admin
         const responseToken = await api.post('/v1/sso/token',{      
             username: 'admin',
@@ -42,7 +46,11 @@ const getRecentsChats = async () => {
         return response.data;
 
     } catch (err) {
-        console.log("error in get chats")
+
+        console.error(err);
+        if(err.response.status == 500) {
+            console.error("ERROR::500: Não foi encontrado nenhum chat")
+        }
         return [];
     }
 }
